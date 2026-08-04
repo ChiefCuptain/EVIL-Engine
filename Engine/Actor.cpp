@@ -24,18 +24,14 @@ namespace nu {
 
     void nu::Actor::Draw(const Renderer& r) const
     {
-        r.DrawModel(m_model, m_transform);
-        /*r.SetColor(255, 255, 127);
-        r.RenderRect(
-            m_transform.position.x - (m_transform.scale * 0.5f)
-            , m_transform.position.y - (m_transform.scale * 0.5f)
-            , m_transform.scale
-            , m_transform.scale
-            , true);*/
+        if (m_model)
+        {
+            r.DrawModel(*m_model, m_transform);
+        }
     }
 
     float Actor::GetRadius() const
     {
-        return m_model.GetRadius() * m_transform.scale * 0.9f;
+        return m_model->GetRadius() * m_transform.scale * 0.9f;
     }
 }

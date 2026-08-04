@@ -4,7 +4,7 @@
 
 struct BulletDesc : public nu::ActorDesc
 {
-	float speed;
+	float speed = 0.0f;
 };
 
 class Bullet : public nu::Actor
@@ -16,8 +16,6 @@ public:
 		m_speed{ BulletDesc.speed }
 	{}
 
-	Bullet(const nu::Transform& transform) : Actor{ transform } {}
-	Bullet(const nu::Transform& transform, const nu::Model& model) : Actor{ transform, model } {}
 
 	void Update(float dt) override;
 

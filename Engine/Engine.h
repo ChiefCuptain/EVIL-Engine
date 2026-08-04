@@ -7,6 +7,8 @@
 
 #include "Actor.h"
 #include "Scene.h"
+#include "Texture.h"
+
 
 #include "Renderer.h"
 #include "Text.h"
@@ -15,6 +17,8 @@
 #include "Timer.h"
 #include "MathUtil.h"
 #include "ParticleSystem.h"
+#include "Audio.h"
+
 
 #include "Game.h"
 
@@ -23,7 +27,6 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include "Audio.h"
 
 namespace nu
 {

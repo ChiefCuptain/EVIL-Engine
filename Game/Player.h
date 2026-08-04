@@ -4,7 +4,7 @@
 
 struct PlayerDesc : public nu::ActorDesc
 {
-	float speed;
+	float speed = 0.0f;
 };
 
 class Player : public nu::Actor
@@ -15,9 +15,6 @@ public:
 		Actor{ playerDesc },
 		m_speed{ playerDesc.speed}
 	{ }
-
-	Player(const nu::Transform& transform) : Actor{ transform } {}
-	Player(const nu::Transform& transform, const nu::Model& model) : Actor{ transform, model } {}
 
 	void Update(float dt) override;
 
