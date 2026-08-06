@@ -6,8 +6,8 @@
 
 struct EnemyDesc : public nu::ActorDesc
 {
-	float speed;
-	float fire_cooldown;
+	float speed = 175.0f;
+	float fire_cooldown = 2.0f;
 };
 
 class Enemy : public nu::Actor

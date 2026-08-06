@@ -22,13 +22,12 @@ namespace nu {
 		void RenderRect(float x, float y, float width, float height, bool fill) const;
 
 		void DrawModel(const class Model& model, const struct Transform& transform) const;
+		void DrawTexture(const class Texture& texture, float x, float y, float angle = 0.0f, float scale = 1.0f, bool flipH = false, bool flipV = false);
 
 		float GetWindowWidth() const { return m_screen_size.x; }
 		float GetWindowHeight() const { return m_screen_size.y; }
 
 		friend class Texture;
-		void DrawTexture(class Texture* texture, float x, float y);
-
 		friend class Text;
 	private:
 		SDL_Window* m_window = nullptr;

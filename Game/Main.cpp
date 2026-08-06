@@ -81,8 +81,6 @@ int main()
     // MAIN LOOP
     bool quit = false;
 
-    std::shared_ptr<nu::Texture> texture = std::make_shared<nu::Texture>();
-    texture->Load("Assets/Textures/spr_clueless_amoeba.png", nu::Engine::Get().GetRenderer());
 
     while (!quit) {
         SDL_Event event;
@@ -113,7 +111,7 @@ int main()
         game.Draw(nu::Engine::Get().GetRenderer());
 
 
-        nu::Engine::Get().GetRenderer().DrawTexture(texture.get(), 30, 30);
+        nu::Engine::Get().GetRenderer().DrawTexture(*nu::Resources().Get<nu::Texture>("Assets/Textures/spr_player.png", nu::Engine::Get().GetRenderer()), 30, 30);
 
 
         nu::Engine::Get().GetPS().Draw(nu::Engine::Get().GetRenderer());

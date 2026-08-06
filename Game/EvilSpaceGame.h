@@ -1,5 +1,6 @@
 #pragma once
 #include "Game.h"
+#include "ResourceManager.h"
 
 class Scene;
 
@@ -42,7 +43,11 @@ private:
 
 	GameState m_gamestate = EvilSpaceGame::GameState::Title;
 	nu::Timer m_level_timer = -1.0f;
-	nu::Font* m_font = nullptr;
+
+	nu::res_t<nu::Font> m_bigFont;
+	nu::res_t<nu::Font> m_mediumFont;
+	nu::res_t<nu::Font> m_smallFont;
+	
 	nu::Text* m_title_text_1 = nullptr;
 	nu::Text* m_title_text_2 = nullptr;
 	nu::Text* m_level_text = nullptr;

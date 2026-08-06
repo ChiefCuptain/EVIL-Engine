@@ -6,6 +6,7 @@
 #include "Random.h"
 #include <iostream>
 #include <string>
+#include <memory>
 
 
 bool EvilSpaceGame::Initialize()
@@ -14,26 +15,28 @@ bool EvilSpaceGame::Initialize()
 
 	m_scene = new nu::Scene();
 
-	m_font = new nu::Font();
-	m_font->Load("Assets/Fonts/Kubasta.ttf", 120.0f);
 
-	m_title_text_1 = new nu::Text(m_font);
+	//m_font = nu::Resources().Get<nu::Font>("Assets/Fonts/Kubasta.ttf", 120.0f);
+	//m_font->Load("Assets/Fonts/Kubasta.ttf", 120.0f);
+
+	m_bigFont = nu::Resources().Get<nu::Font>("Assets/Fonts/Kubasta.ttf", 120.0f);
+	m_mediumFont = nu::Resources().Get<nu::Font>("Assets/Fonts/Kubasta.ttf", 60.0f);
+	m_smallFont = nu::Resources().Get<nu::Font>("Assets/Fonts/Kubasta.ttf", 36.0f);
+
+
+	m_title_text_1 = new nu::Text(m_bigFont);
 	m_title_text_1->Create(nu::Engine::Get().GetRenderer(),"EVIL", {1.0f, 0.0f, 0.0f});
 
-	m_game_over_text_1 = new nu::Text(m_font);
+	m_game_over_text_1 = new nu::Text(m_bigFont);
 	m_game_over_text_1->Create(nu::Engine::Get().GetRenderer(), "you died bozo", { 0.3f, 0.0f, 0.0f });
 
-
-	m_font->ChangeFontSize("Assets/Fonts/Kubasta.ttf", 60.0f);
-	
-	m_title_text_2 = new nu::Text(m_font);
+	m_title_text_2 = new nu::Text(m_mediumFont);
 	m_title_text_2->Create(nu::Engine::Get().GetRenderer(), "space game", { 1.0f, 1.0f, 1.0f });
-	m_game_over_text_2 = new nu::Text(m_font);
+	m_game_over_text_2 = new nu::Text(m_mediumFont);
 
-	m_font->ChangeFontSize("Assets/Fonts/Kubasta.ttf", 36.0f);
-	m_level_text = new nu::Text(m_font);
+	m_level_text = new nu::Text(m_smallFont);
 	
-	m_lives_text = new nu::Text(m_font);
+	m_lives_text = new nu::Text(m_smallFont);
 
 	nu::Engine::Get().GetAudio().AddSound("player_shoot", "Assets/Audio/snd_player_shoot.wav");
 	nu::Engine::Get().GetAudio().AddSound("enemy_shoot", "Assets/Audio/snd_enemy_shoot.wav");
@@ -59,17 +62,15 @@ void EvilSpaceGame::Update(float dt)
 		m_lives_string = std::to_string(m_lives);
 		m_lives_string.append(" Lives");
 
-		m_font->ChangeFontSize("Assets/Fonts/Kubasta.ttf", 36.0f);
-		m_lives_text = new nu::Text(m_font);
+		m_lives_text = new nu::Text(m_smallFont);
 		m_lives_text->Create(nu::Engine::Get().GetRenderer(), m_lives_string, { 1.0f, 1.0f, 1.0f });
 
 		m_level = 1;
 		break;
 	case EvilSpaceGame::GameState::StartLevel:
-		m_font->ChangeFontSize("Assets/Fonts/Kubasta.ttf", 36.0f);
 		m_level_string = "Level ";
 		m_level_string.append(std::to_string(m_level));
-		m_level_text = new nu::Text(m_font);
+		m_level_text = new nu::Text(m_smallFont);
 		m_level_text->Create(nu::Engine::Get().GetRenderer(), m_level_string, { 1.0f, 1.0f, 1.0f });
 
 
@@ -114,8 +115,7 @@ void EvilSpaceGame::Update(float dt)
 			m_lives_string = std::to_string(m_lives);
 			m_lives_string.append(" Lives");
 
-			m_font->ChangeFontSize("Assets/Fonts/Kubasta.ttf", 36.0f);
-			m_lives_text = new nu::Text(m_font);
+			m_lives_text = new nu::Text(m_smallFont);
 			m_lives_text->Create(nu::Engine::Get().GetRenderer(), m_lives_string, { 1.0f, 1.0f, 1.0f });
 			m_gamestate = GameState::StartLevel;
 		}
@@ -132,14 +132,12 @@ void EvilSpaceGame::Update(float dt)
 			m_lives_string = std::to_string(m_lives);
 			m_lives_string.append(" Lives");
 
-			m_font->ChangeFontSize("Assets/Fonts/Kubasta.ttf", 36.0f);
-			m_lives_text = new nu::Text(m_font);
+			m_lives_text = new nu::Text(m_smallFont);
 			m_lives_text->Create(nu::Engine::Get().GetRenderer(), m_lives_string, { 1.0f, 1.0f, 1.0f });
 
 			if (m_lives <= 0) 
 			{
 				m_level_timer = { 4.0f };
-				m_font->ChangeFontSize("Assets/Fonts/Kubasta.ttf", 60.0f);
 				std::string final_level = "(Level ";
 				final_level.append(std::to_string(m_level)).append(")");
 				m_game_over_text_2->Create(nu::Engine::Get().GetRenderer(), final_level, { 0.7f, 0.7f, 0.7f });

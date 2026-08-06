@@ -46,6 +46,9 @@ namespace nu
 		ParticleSystem& GetPS() { return m_particle_system; }
 		Audio& GetAudio() { return m_audio; }
 
+		Engine(const Engine&) = delete;
+		Engine& operator = (const Engine&) = delete;
+
 	private:
 		Engine() = default;
 	private:

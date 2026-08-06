@@ -29,12 +29,8 @@
             return false;
         }
 
-        return true;
-    }
+        // Cache size
+        SDL_GetTextureSize(m_texture, &m_size.x, &m_size.y);
 
-    nu::Vector2 nu::Texture::GetSize()
-    {
-        Vector2 v;
-        SDL_GetTextureSize(m_texture, &v.x, &v.y);
-        return v;
+        return true;
     }
