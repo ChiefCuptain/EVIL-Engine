@@ -2,17 +2,98 @@
 #include <vector>
 #include <map>
 #include <memory>
-
-uint32_t seed = 1234;
-
-uint32_t RNG()
-{
-    seed = (seed * 1103515245) + 12345;
-    return seed;
-}
+#include <fstream>
 
 int main()
 {
+
+    {
+        // Read file
+        std::ifstream file("Assets/Data/text.txt");
+        if (file.is_open())
+        {
+            std::string str;
+            while (std::getline(file, str))
+            {
+                std::cout << str << "\n";
+            }
+            std::cout << "\n\t<Finished reading file.>\n";
+        }
+    }
+
+    {
+        // Write file
+        std::ofstream file("Assets/Data/text.txt", std::ios::app);
+        if (file.is_open())
+        {
+            file << "Example text, blah.\n";
+        }
+    }
+
+    {
+        // Read / write
+        std::fstream file("Assets/Data/text.txt", std::ios::in | std::ios::out | std::ios::app);
+        if (file.is_open())
+        {
+            // Input
+            file << "Add a line.\n";
+            // Output
+            file.seekg(0);
+            std::string str;
+            while (std::getline(file, str))
+            {
+                std::cout << str << "\n";
+            }
+            std::cout << "\n\t<Finished reading file.>\n";
+        }
+    }
+
+    {
+        std::string name;
+        int score;
+        bool isAlive;
+
+        bool save = false;
+
+        // Save game data
+        if (save)
+        {
+            name = "Jack";
+            score = 12;
+            isAlive = true;
+
+            std::ofstream file("Assets/Data/game.txt");
+            if (file.is_open())
+            {
+                file << name << "\n";
+                file << score << "\n";
+                file << isAlive << "\n";
+            }
+        }
+        // Load game data
+        bool load = true;
+
+        if (load)
+        {
+            std::ifstream file("Assets/Data/game.txt");
+            if (file.is_open())
+            {
+                std::getline(file, name);
+
+                std::string str;
+                std::getline(file, str);
+                score = std::stoi(str);
+                file >> isAlive;
+            }
+        }
+
+        // Display game data
+        std::cout << name << std::endl;
+        std::cout << score << std::endl;
+        std::cout << isAlive << std::endl;
+    }
+
+    return 0;
 
     // INITIALIZATION
     nu::Engine::Get().Initialize();
