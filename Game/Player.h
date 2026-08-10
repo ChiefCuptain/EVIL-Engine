@@ -21,7 +21,6 @@ public:
 	void OnCollision(Actor* other) override;
 
 private:
-	int m_ammo = 0;
 	float m_speed = 175.0f;
 	float m_brake_speed = 4.0f;
 	bool m_mouse_drag = false;

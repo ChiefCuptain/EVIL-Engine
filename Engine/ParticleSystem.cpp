@@ -58,6 +58,7 @@ namespace nu
 
 			// set particle active
 			// TODO: set free particle active to true
+			freeParticle->active = true;
 		}
 	}
 

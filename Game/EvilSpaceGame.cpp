@@ -19,9 +19,9 @@ bool EvilSpaceGame::Initialize()
 	//m_font = nu::Resources().Get<nu::Font>("Assets/Fonts/Kubasta.ttf", 120.0f);
 	//m_font->Load("Assets/Fonts/Kubasta.ttf", 120.0f);
 
-	m_bigFont = nu::Resources().Get<nu::Font>("Assets/Fonts/Kubasta.ttf", 120.0f);
-	m_mediumFont = nu::Resources().Get<nu::Font>("Assets/Fonts/Kubasta.ttf", 60.0f);
-	m_smallFont = nu::Resources().Get<nu::Font>("Assets/Fonts/Kubasta.ttf", 36.0f);
+	m_bigFont = nu::Resources().GetWithID<nu::Font>("bigFont", "Assets/Fonts/Kubasta.ttf", 120.0f);
+	m_mediumFont = nu::Resources().GetWithID<nu::Font>("mediumFont", "Assets/Fonts/Kubasta.ttf", 60.0f);
+	m_smallFont = nu::Resources().GetWithID<nu::Font>("smallFont", "Assets/Fonts/Kubasta.ttf", 36.0f);
 
 
 	m_title_text_1 = new nu::Text(m_bigFont);
@@ -239,9 +239,10 @@ void EvilSpaceGame::SpawnPlayer()
 	PlayerDesc playerDesc;
 	playerDesc.name = "Player";
 	playerDesc.tag = "Player";
-	playerDesc.model = assets::playerModel;
+	//playerDesc.model = assets::playerModel;
+	playerDesc.texture = nu::Resources().Get<nu::Texture>("Assets/Textures/spr_player.png", nu::Engine::Get().GetRenderer());
 	playerDesc.velocity = nu::Vector2{ 0.0f };
-	playerDesc.transform = nu::Transform{ nu::Vector2{960.0f, 540.0f}, 0.0f, 25.0f };
+	playerDesc.transform = nu::Transform{ nu::Vector2{960.0f, 540.0f}, 0.0f, 1.5f };
 	playerDesc.speed = 175.0f;
 
 	std::unique_ptr<Player> player = std::make_unique<Player>(playerDesc);
@@ -253,7 +254,8 @@ void EvilSpaceGame::SpawnEnemy()
 	EnemyDesc enemyDesc;
 	enemyDesc.name = "Enemy";
 	enemyDesc.tag = "Enemy";
-	enemyDesc.model = assets::playerModel;
+	//enemyDesc.model = assets::playerModel;
+	enemyDesc.texture = nu::Resources().Get<nu::Texture>("Assets/Textures/spr_enemy.png", nu::Engine::Get().GetRenderer());
 	enemyDesc.velocity = nu::Vector2{ 0.0f };
 	enemyDesc.fire_cooldown = 3.5f;
 	enemyDesc.speed = 125.0f;
@@ -268,7 +270,7 @@ void EvilSpaceGame::SpawnEnemy()
 	} while ((playerPosition - enemyPosition).Length() <= 500);
 	
 
-	enemyDesc.transform = nu::Transform{ enemyPosition, 0.0f, 12.0f };
+	enemyDesc.transform = nu::Transform{ enemyPosition, 0.0f, 0.75f };
 	std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(enemyDesc);
 	m_scene->AddActor(std::move(enemy));
 }

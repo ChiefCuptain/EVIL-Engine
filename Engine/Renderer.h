@@ -22,7 +22,9 @@ namespace nu {
 		void RenderRect(float x, float y, float width, float height, bool fill) const;
 
 		void DrawModel(const class Model& model, const struct Transform& transform) const;
-		void DrawTexture(const class Texture& texture, float x, float y, float angle = 0.0f, float scale = 1.0f, bool flipH = false, bool flipV = false);
+		void DrawTexture(const class Texture& texture, float x, float y, float angle = 0.0f, float scale = 1.0f, bool flipH = false, bool flipV = false) const;
+		void DrawTexture(const class Texture& texture, const struct Transform& transform, bool flipH = false, bool flipV = false) const;
+
 
 		float GetWindowWidth() const { return m_screen_size.x; }
 		float GetWindowHeight() const { return m_screen_size.y; }

@@ -3,84 +3,24 @@
 #include <map>
 #include <memory>
 
-//class Object
-//{
-//public:
-//    Object() { std::cout << "Constructor\n"; }
-//    ~Object() { std::cout << "Destructor\n"; }
-//
-//    Object(const Object& object) { std::cout << "Copy constructor\n"; }
-//    Object& operator = (const Object& object) { std::cout << "Assignment operator \n"; return *this; }
-//
-//};
+uint32_t seed = 1234;
+
+uint32_t RNG()
+{
+    seed = (seed * 1103515245) + 12345;
+    return seed;
+}
 
 int main()
 {
-
-    //std::cout << "===============Object===============\n";
-    //{
-    //    Object objectA;
-    //    Object objectB = objectA;
-    //    Object objectC;
-    //    objectC = objectA;
-    //}
-
-    //std::cout << "===============Raw Pointers===============\n";
-    //{
-    //    Object* objectA = new Object();
-    //    std::cout << objectA << "\n";
-    //    Object* objectB = new Object(*objectA);
-    //    std::cout << objectB << "\n";
-
-    //    Object* objectC = nullptr;
-    //    objectC = objectA;
-    //    std::cout << objectC << "\n";
-
-    //    delete objectA;
-    //    delete objectB;
-    //    //delete objectC;
-    //}
-
-    //std::cout << "===============Unique Pointers===============\n";
-    //{
-    //    std::unique_ptr<Object> objectA = std::make_unique<Object>();
-    //    std::cout << objectA.get() << "\n";
-    //    std::unique_ptr<Object> objectB;
-    //    objectB = std::move(objectA);
-    //    //std::cout << objectA.get() << "\n";
-    //    std::cout << objectB.get() << "\n";
-
-
-    //}
-
-    //std::cout << "===============Shared Pointers===============\n";
-    //std::shared_ptr<Object> objectC;
-    //{
-    //    auto objectA = std::make_shared<Object>();
-    //    std::cout << objectA.get() << "\n";
-    //    std::cout << objectA.use_count() << "\n";
-    //    auto objectB = objectA;
-    //    std::cout << objectB.get() << "\n";
-    //    std::cout << objectB.use_count() << "\n";
-    //    objectC = objectA;
-    //    std::cout << objectC.get() << "\n";
-    //    std::cout << objectC.use_count() << "\n";
-    //}
-    //std::cout << objectC.use_count() << "\n";
-
-
-    //return 0;
 
     // INITIALIZATION
     nu::Engine::Get().Initialize();
     EvilSpaceGame game;
     game.Initialize();
-
-
     
     // MAIN LOOP
     bool quit = false;
-
 
     while (!quit) {
         SDL_Event event;
@@ -102,17 +42,11 @@ int main()
         // Game
         game.Update(dt);
 
-
-
         // RENDER
         nu::Engine::Get().GetRenderer().SetColor(0, 0, 0); // Set render draw color to black
         nu::Engine::Get().GetRenderer().Clear(); // Clear the renderer
 
         game.Draw(nu::Engine::Get().GetRenderer());
-
-
-        nu::Engine::Get().GetRenderer().DrawTexture(*nu::Resources().Get<nu::Texture>("Assets/Textures/spr_player.png", nu::Engine::Get().GetRenderer()), 30, 30);
-
 
         nu::Engine::Get().GetPS().Draw(nu::Engine::Get().GetRenderer());
 

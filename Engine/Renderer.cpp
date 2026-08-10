@@ -110,7 +110,7 @@ namespace nu
     }
 
 
-    void Renderer::DrawTexture(const Texture& texture, float x, float y, float angle, float scale, bool flipH, bool flipV)
+    void Renderer::DrawTexture(const Texture& texture, float x, float y, float angle, float scale, bool flipH, bool flipV) const
     {
         Vector2 size = texture.GetSize();
 
@@ -136,6 +136,36 @@ namespace nu
         }
 
         SDL_RenderTextureRotated(m_renderer, texture.m_texture, NULL, &destRect, angle, NULL, flip_type);
+    }
+
+    void Renderer::DrawTexture(const Texture& texture, const Transform& transform, bool flipH, bool flipV) const
+    {
+        Vector2 size = texture.GetSize();
+
+        SDL_FRect destRect;
+        destRect.w = size.x * transform.scale;
+        destRect.h = size.y * transform.scale;
+
+        destRect.x = transform.position.x - (destRect.w * 0.5f);
+        destRect.y = transform.position.y - (destRect.h * 0.5f);
+
+
+        // https://wiki.libsdl.org/SDL3/SDL_RenderTexture
+        SDL_FlipMode flip_type = SDL_FLIP_NONE;
+        if (flipH && flipV)
+        {
+            flip_type = SDL_FLIP_HORIZONTAL_AND_VERTICAL;
+        }
+        else if (flipH)
+        {
+            flip_type = SDL_FLIP_HORIZONTAL;
+        }
+        else if (flipV)
+        {
+            flip_type = SDL_FLIP_VERTICAL;
+        }
+
+        SDL_RenderTextureRotated(m_renderer, texture.m_texture, NULL, &destRect, transform.rotation, NULL, flip_type);
     }
 
     Renderer::~Renderer()

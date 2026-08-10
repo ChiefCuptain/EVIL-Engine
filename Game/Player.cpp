@@ -5,6 +5,7 @@
 #include "Engine.h"
 #include "Assets.h"
 #include "Bullet.h"
+#include <ResourceManager.h>
 
 void Player::Update(float dt)
 {
@@ -59,9 +60,10 @@ void Player::Update(float dt)
             BulletDesc bulletDesc;
             bulletDesc.name = "Bullet";
             bulletDesc.tag = "Player_Bullet";
-            bulletDesc.model = assets::bulletModel;
+            //bulletDesc.model = assets::bulletModel;
+            bulletDesc.texture = nu::Resources().Get<nu::Texture>("Assets/Textures/spr_missile.png", nu::Engine::Get().GetRenderer());
             bulletDesc.transform = m_transform;
-            bulletDesc.transform.scale = 7.0f;
+            bulletDesc.transform.scale = 1.0f;
             bulletDesc.lifespan = 2.0f;
             bulletDesc.speed = 800.0f;
 

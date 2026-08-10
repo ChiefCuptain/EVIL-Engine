@@ -9,6 +9,7 @@
 #include <cmath>
 #include "Bullet.h"
 #include "Assets.h"
+#include <ResourceManager.h>
 
 void Enemy::Update(float dt)
 {
@@ -39,9 +40,10 @@ void Enemy::Update(float dt)
             BulletDesc bulletDesc;
             bulletDesc.name = "Bullet";
             bulletDesc.tag = "Enemy_Bullet";
-            bulletDesc.model = assets::bulletModel;
+            //bulletDesc.model = assets::bulletModel;
+            bulletDesc.texture = nu::Resources().Get<nu::Texture>("Assets/Textures/spr_missile.png", nu::Engine::Get().GetRenderer());
             bulletDesc.transform = m_transform;
-            bulletDesc.transform.scale = 7.0f;
+            bulletDesc.transform.scale = 1.0f;
             bulletDesc.lifespan = 1.5f;
             bulletDesc.speed = 400.0f;
 
