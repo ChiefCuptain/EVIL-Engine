@@ -92,7 +92,7 @@ void Player::OnCollision(Actor* other)
             particle.lifespan = nu::RandomFloat(0.5f, 2.0f);
             particle.velocity = { nu::RandomFloat(-600.0f, 600.0f), nu::RandomFloat(-600.0f, 600.0f) };
 
-            nu::Engine::Get().GetPS().AddParticle(particle);
+            nu::Engine::Get().GetPS().AddParticle(particle, nu::Resources().GetWithID<nu::Texture>("explosion", "Assets/Textures/spr_explosion.png", nu::Engine::Get().GetRenderer()));
         }
         nu::Engine::Get().GetAudio().PlaySound("explosion");
         SetDestroyed();

@@ -37,11 +37,16 @@ namespace nu
 		{
 			if (particle.active)
 			{
-				// set particle color and draw point at current position
-				// TODO: set color with particle color
-				renderer.SetColorFloat(particle.color.r, particle.color.g, particle.color.b);
-				// TODO: draw point with particle position
-				renderer.RenderPoint(particle.position.x, particle.position.y);
+				if (particle.texture)
+				{
+					renderer.DrawTexture(*particle.texture, particle.position.x, particle.position.y, 0.0f, 0.5f);
+				}
+				else
+				{
+					renderer.SetColorFloat(particle.color.r, particle.color.g, particle.color.b);
+					renderer.RenderPoint(particle.position.x, particle.position.y);
+				}
+				
 			}
 		}
 	}
@@ -58,6 +63,19 @@ namespace nu
 
 			// set particle active
 			// TODO: set free particle active to true
+			freeParticle->active = true;
+		}
+	}
+
+	void ParticleSystem::AddParticle(const Particle& particle, res_t<nu::Texture> texture)
+	{
+		// get free particle
+		Particle* freeParticle = GetFreeParticle();
+		// check if free particle is not nullptr
+		if (freeParticle)
+		{
+			*freeParticle = particle;
+			freeParticle->texture = texture;
 			freeParticle->active = true;
 		}
 	}

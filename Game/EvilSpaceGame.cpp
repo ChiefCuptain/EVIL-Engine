@@ -9,7 +9,7 @@
 #include <memory>
 
 
-bool EvilSpaceGame::Initialize()
+bool nu::EvilSpaceGame::Initialize()
 {
 	Game::Initialize();
 
@@ -38,6 +38,9 @@ bool EvilSpaceGame::Initialize()
 	
 	m_lives_text = new nu::Text(m_smallFont);
 
+	nu::Resources().GetWithID<nu::Texture>("background", "Assets/Textures/spr_bg.png", nu::Engine::Get().GetRenderer());
+	nu::Resources().GetWithID<nu::Texture>("explosion", "Assets/Textures/spr_explosion.png", nu::Engine::Get().GetRenderer());
+
 	nu::Engine::Get().GetAudio().AddSound("player_shoot", "Assets/Audio/snd_player_shoot.wav");
 	nu::Engine::Get().GetAudio().AddSound("enemy_shoot", "Assets/Audio/snd_enemy_shoot.wav");
 	nu::Engine::Get().GetAudio().AddSound("explosion", "Assets/Audio/snd_explosion.wav");
@@ -45,7 +48,7 @@ bool EvilSpaceGame::Initialize()
 	return true;
 }
 
-void EvilSpaceGame::Update(float dt)
+void nu::EvilSpaceGame::Update(float dt)
 {
 	switch (m_gamestate)
 	{
@@ -174,7 +177,7 @@ void EvilSpaceGame::Update(float dt)
 	}
 }
 
-void EvilSpaceGame::Draw(const nu::Renderer& renderer)
+void nu::EvilSpaceGame::Draw(const nu::Renderer& renderer)
 {
 	switch (m_gamestate)
 	{
@@ -193,6 +196,7 @@ void EvilSpaceGame::Draw(const nu::Renderer& renderer)
 	case EvilSpaceGame::GameState::StartLevel:
 		break;
 	case EvilSpaceGame::GameState::Game:
+		nu::Engine::Get().GetRenderer().DrawTexture(*nu::Resources().GetWithID<nu::Texture>("background", "Assets/Textures/spr_bg.png", nu::Engine::Get().GetRenderer()), 0.0f, 0.0f);
 		m_level_text->Draw(
 			nu::Engine::Get().GetRenderer(),
 			30.0f, 15.0f, false);
@@ -202,6 +206,7 @@ void EvilSpaceGame::Draw(const nu::Renderer& renderer)
 		m_scene->Draw(renderer);
 		break;
 	case EvilSpaceGame::GameState::EndLevel:
+		nu::Engine::Get().GetRenderer().DrawTexture(*nu::Resources().GetWithID<nu::Texture>("background", "Assets/Textures/spr_bg.png", nu::Engine::Get().GetRenderer()), 0.0f, 0.0f);
 		m_level_text->Draw(
 			nu::Engine::Get().GetRenderer(),
 			30.0f, 15.0f, false);
@@ -211,6 +216,7 @@ void EvilSpaceGame::Draw(const nu::Renderer& renderer)
 		m_scene->Draw(renderer);
 		break;
 	case EvilSpaceGame::GameState::PlayerDeath:
+		nu::Engine::Get().GetRenderer().DrawTexture(*nu::Resources().GetWithID<nu::Texture>("background", "Assets/Textures/spr_bg.png", nu::Engine::Get().GetRenderer()), 0.0f, 0.0f);
 		m_level_text->Draw(
 			nu::Engine::Get().GetRenderer(),
 			30.0f, 15.0f, false);
@@ -234,7 +240,7 @@ void EvilSpaceGame::Draw(const nu::Renderer& renderer)
 	}
 }
 
-void EvilSpaceGame::SpawnPlayer()
+void nu::EvilSpaceGame::SpawnPlayer()
 {
 	PlayerDesc playerDesc;
 	playerDesc.name = "Player";
@@ -249,7 +255,7 @@ void EvilSpaceGame::SpawnPlayer()
 	m_scene->AddActor(std::move(player));
 }
 
-void EvilSpaceGame::SpawnEnemy()
+void nu::EvilSpaceGame::SpawnEnemy()
 {
 	EnemyDesc enemyDesc;
 	enemyDesc.name = "Enemy";

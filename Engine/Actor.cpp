@@ -45,5 +45,6 @@ namespace nu {
         {
             return (m_texture->GetSize().Length()) * 0.5f * 0.9f;
         }
+        return 0.0f;
     }
 }
