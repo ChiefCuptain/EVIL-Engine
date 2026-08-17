@@ -1,7 +1,9 @@
 #pragma once
+#include "Object.h"
 #include "Transform.h"
 #include "Model.h"
 #include "Resource.h"
+#include "Component.h"
 #include <string>
 #include <memory>
 namespace nu
@@ -20,12 +22,12 @@ namespace nu
         res_t<Texture> texture;
     };
 
-    class Actor
+    class Actor : public Object
     {
     public:
         Actor() = default;
         Actor(const ActorDesc& actorDesc) :
-            m_name{ actorDesc.name },
+            Object{ actorDesc.name },
             m_tag{ actorDesc.tag },
             m_transform{ actorDesc.transform },
             m_velocity{ actorDesc.velocity },
@@ -62,10 +64,11 @@ namespace nu
 
         float GetRadius() const;
 
+        virtual void Read(const json::value_t& value) override;
+
         friend Scene;
 
     protected:
-        std::string m_name;
         std::string m_tag;
 
         Transform m_transform;
@@ -76,6 +79,8 @@ namespace nu
 
         res_t<Model> m_model;
         res_t<Texture> m_texture;
+
+        std::vector<Component*> m_components;
 
         Scene* m_scene = nullptr;
     };

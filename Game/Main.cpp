@@ -1,53 +1,63 @@
 #include "EvilSpaceGame.h"
+#include "Player.h"
 #include <vector>
 #include <map>
 #include <memory>
 
-int main()
-{
+using namespace nu;
 
-    // INITIALIZATION
-    nu::Engine::Get().Initialize();
-    nu::EvilSpaceGame game;
-    game.Initialize();
-    
-    // MAIN LOOP
-    bool quit = false;
+    int main()
+    {
+        // don't move this
+        SetWorkingDirectory("Assets");
+        // don't move this
 
-    while (!quit) {
-        SDL_Event event;
-        while (SDL_PollEvent(&event)) {
-            // UPDATE
-            if (event.type == SDL_EVENT_QUIT) {
-                quit = true;
+        auto actor = Factory::Instance().Create<Actor>("Actor");
+        std::cout << actor->IsActive() << "\n";
+
+        return 0;
+        // INITIALIZATION
+        Engine::Get().Initialize();
+        EvilSpaceGame game;
+        game.Initialize();
+
+        // MAIN LOOP
+        bool quit = false;
+
+        while (!quit) {
+            SDL_Event event;
+            while (SDL_PollEvent(&event)) {
+                // UPDATE
+                if (event.type == SDL_EVENT_QUIT) {
+                    quit = true;
+                }
+                if (event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_ESCAPE) {
+                    quit = true;
+                }
             }
-            if (event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_ESCAPE) {
-                quit = true;
-            }
+
+            // Engine
+            Engine::Get().Update();
+
+            float dt = Engine::Get().GetTime().GetDeltaTime();
+
+            // Game
+            game.Update(dt);
+
+            // RENDER
+            Engine::Get().GetRenderer().SetColor(0, 0, 0); // Set render draw color to black
+            Engine::Get().GetRenderer().Clear(); // Clear the renderer
+
+            game.Draw(Engine::Get().GetRenderer());
+
+            Engine::Get().GetPS().Draw(Engine::Get().GetRenderer());
+
+            Engine::Get().GetRenderer().RenderPresent();// Render the screen
         }
 
-        // Engine
-        nu::Engine::Get().Update();
+        // SHUTDOWN
+        Engine::Get().Quit();
 
-        float dt = nu::Engine::Get().GetTime().GetDeltaTime();
-
-        // Game
-        game.Update(dt);
-
-        // RENDER
-        nu::Engine::Get().GetRenderer().SetColor(0, 0, 0); // Set render draw color to black
-        nu::Engine::Get().GetRenderer().Clear(); // Clear the renderer
-
-        game.Draw(nu::Engine::Get().GetRenderer());
-
-        nu::Engine::Get().GetPS().Draw(nu::Engine::Get().GetRenderer());
-
-        nu::Engine::Get().GetRenderer().RenderPresent();// Render the screen
+        // Testing edits
+        return 0;
     }
-
-    // SHUTDOWN
-    nu::Engine::Get().Quit();
-
-    // Testing edits
-    return 0;
-}

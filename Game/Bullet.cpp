@@ -1,5 +1,9 @@
 #include "Bullet.h"
 #include "MathUtil.h"
+#include "Factory.h"
+
+FACTORY_REGISTER(Bullet);
+
 
 void Bullet::Update(float dt)
 {

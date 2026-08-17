@@ -1,0 +1,14 @@
+{
+  "name": "Jack Nolan",
+  "tag": "Student",
+  "active": true,
+  "transform": {
+    "position": [ 3.1, 4.1 ],
+    "rotation": 25,
+    "scale": 1.5
+  },
+  "velocity": [ 4.0, 4.0 ],
+  "lifespan": -1,
+  "speed": 175,
+  "brake_speed":  4
+}

@@ -7,6 +7,9 @@
 #include "Bullet.h"
 #include <ResourceManager.h>
 
+FACTORY_REGISTER(Player);
+
+
 void Player::Update(float dt)
 {
     if (nu::Engine::Get().GetInput().GetKeyPressed(SDL_SCANCODE_T))
@@ -99,4 +102,12 @@ void Player::OnCollision(Actor* other)
         other->SetDestroyed();
         
     }
+}
+
+void Player::Read(const nu::json::value_t& value)
+{
+    Actor::Read(value);
+
+    JSON_READ_NAME(value, "speed", m_speed);
+    JSON_READ_NAME(value, "brake_speed", m_brake_speed);
 }

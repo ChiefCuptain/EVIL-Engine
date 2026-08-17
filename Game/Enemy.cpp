@@ -4,12 +4,13 @@
 #include "Renderer.h"
 #include "MathUtil.h"
 #include "Engine.h"
-
-
-#include <cmath>
 #include "Bullet.h"
 #include "Assets.h"
+
+#include <cmath>
 #include <ResourceManager.h>
+
+FACTORY_REGISTER(Enemy);
 
 void Enemy::Update(float dt)
 {

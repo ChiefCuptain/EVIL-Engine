@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Actor.h"
+#include <JSON.h>
 
 struct PlayerDesc : public nu::ActorDesc
 {
@@ -19,6 +20,12 @@ public:
 	void Update(float dt) override;
 
 	void OnCollision(Actor* other) override;
+
+	float GetSpeed() const { return m_speed; }
+	float GetBrakeSpeed() const { return m_brake_speed; }
+
+	void Read(const nu::json::value_t& value) override;
+
 
 private:
 	float m_speed = 175.0f;

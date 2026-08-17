@@ -10,7 +10,10 @@
 #include "Texture.h"
 #include "File.h"
 #include "JSON.h"
+#include "StringUtils.h"
 
+#include "Factory.h"
+#include "ResourceManager.h"
 
 #include "Renderer.h"
 #include "Text.h"
@@ -23,8 +26,6 @@
 
 
 #include "Game.h"
-
-#include "fmod.hpp"
 
 #include <iostream>
 #include <vector>

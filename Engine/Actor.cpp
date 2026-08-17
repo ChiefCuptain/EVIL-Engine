@@ -3,9 +3,13 @@
 #include "Renderer.h"
 #include "MathUtil.h"
 #include "Texture.h"
+#include "Factory.h"
+
 
 
 namespace nu {
+
+    FACTORY_REGISTER(Actor);
 
     void Actor::Update(float dt)
     {
@@ -17,6 +21,11 @@ namespace nu {
             m_destroyed = (m_lifespan <= 0.0f);
         }
 
+        for (auto& component : m_components)
+        {
+            component->Update(dt);
+        }
+
         m_transform.position += (m_velocity * dt);
 
         m_transform.position.x = Clamp(0.0f, 1920.0f, m_transform.position.x);
@@ -25,6 +34,11 @@ namespace nu {
 
     void nu::Actor::Draw(const Renderer& r) const
     {
+       /* for (auto& component : m_components)
+        {
+            component->Draw(r);
+        }*/
+
         if (m_texture)
         {
             r.DrawTexture(*m_texture, m_transform);
@@ -37,6 +51,9 @@ namespace nu {
 
     float Actor::GetRadius() const
     {
+ 
+
+
         if (m_model)
         {
             return m_model->GetRadius() * m_transform.scale * 0.9f;
@@ -46,5 +63,15 @@ namespace nu {
             return (m_texture->GetSize().Length()) * 0.5f * 0.9f;
         }
         return 0.0f;
+    }
+
+    void Actor::Read(const json::value_t& value)
+    {
+        Object::Read(value);
+        JSON_READ_NAME(value, "tag", m_tag);
+        if (JSON_HAS(value, "transform")) m_transform.Read(JSON_GET_NAME(value, "transform"));
+        JSON_READ_NAME(value, "velocity", m_velocity);
+        JSON_READ_NAME(value, "lifespan", m_lifespan);
+
     }
 }
