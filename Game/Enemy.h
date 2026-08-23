@@ -27,6 +27,8 @@ public:
 
 	void OnCollision(Actor* other) override;
 
+	virtual void Read(const nu::json::value_t& value) override;
+
 private:
 	float m_fire_cooldown = 2.0f;
 	float m_fire_timer = 0.0f;

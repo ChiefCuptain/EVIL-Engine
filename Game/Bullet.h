@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Actor.h"
+#include "Timer.h"
 
 struct BulletDesc : public nu::ActorDesc
 {
@@ -20,7 +21,11 @@ public:
 
 	void Update(float dt) override;
 
+	void SetSpeed(float speed) { m_speed = speed; }
+
+	virtual void Read(const nu::json::value_t& value) override;
+
 private:
 	float m_speed = 175.0f;
-	float m_brake_speed = 4.0f;
+	nu::Timer m_life_timer{ 1.0f };
 };

@@ -46,6 +46,8 @@ namespace nu
 
         const Transform& GetTransform() const { return m_transform; }
 
+        void SetTransform(const Transform& transform);
+
         void SetPosition(const Vector2& position) { m_transform.position = position; }
 
         void SetRotation(float rotation) { m_transform.rotation = rotation; }
@@ -58,11 +60,13 @@ namespace nu
 
         const std::string& GetName() const { return m_name; }
         const std::string& GetTag() const { return m_tag; }
+        void SetTag(const std::string& tag) { m_tag = tag; }
         const Scene* GetScene() { return m_scene; }
 
         void SetDestroyed(bool destroy = true) { m_destroyed = destroy; }
         bool GetDestroyed() const { return m_destroyed; }
 
+        void ProcessLifespan(float dt);
 
         float GetRadius() const;
 

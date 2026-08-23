@@ -60,24 +60,18 @@ void Player::Update(float dt)
 
         if (nu::Engine::Get().GetInput().GetKeyPressed(SDL_SCANCODE_E))
         {
-            BulletDesc bulletDesc;
-            bulletDesc.name = "Bullet";
-            bulletDesc.tag = "Player_Bullet";
-            //bulletDesc.model = assets::bulletModel;
-            bulletDesc.texture = nu::Resources().Get<nu::Texture>("Textures/spr_missile.png", nu::Engine::Get().GetRenderer());
-            bulletDesc.transform = m_transform;
-            bulletDesc.transform.scale = 1.0f;
-            bulletDesc.lifespan = 2.0f;
-            bulletDesc.speed = 800.0f;
+            auto actor = nu::Factory::Instance().Create<Bullet>("BulletPrototype");
 
-            std::unique_ptr<Bullet> bullet = std::make_unique<Bullet>(bulletDesc);
-            m_scene->AddActor(std::move(bullet));
+            actor->SetTag("Player_Bullet");
+            actor->SetTransform(m_transform);
+            actor->SetScale(1.0f);
+            actor->SetSpeed(800.0f);
+
+            m_scene->AddActor(std::move(actor));
 
             nu::Engine::Get().GetAudio().PlaySound("player_shoot");
         }
 
-        //SetVelocity(GetVelocity() + force * dt);
-        //SetRotation(GetTransform().position.Normalized().Angle() * nu::RadToDeg);
     }
     
     Actor::Update(dt);

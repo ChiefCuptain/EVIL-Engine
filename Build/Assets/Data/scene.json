@@ -7,18 +7,18 @@
       "tag": "Player",
       "active": true,
       "velocity": [
-        4,
-        4
+        0,
+        0
       ],
       "transform": {
         "position": [
-          3.1,
-          4.1
+          0,
+          0
         ],
-        "rotation": 25,
+        "rotation": 0,
         "scale": 1.5
       },
-      "lifespan": -1,
+      "lifespan": -1.0,
       "speed": 175,
       "brake_speed": 4,
       "components": [
@@ -28,7 +28,71 @@
         },
         {
           "type": "CircleColliderComponent",
-          "radius": 64
+          "radius": 24
+        }
+      ]
+    },
+    {
+      "name": "EnemyPrototype",
+      "prototype": true,
+      "type": "Enemy",
+      "tag": "Enemy",
+      "active": true,
+      "velocity": [
+        0,
+        0
+      ],
+      "transform": {
+        "position": [
+          0,
+          0
+        ],
+        "rotation": 0,
+        "scale": 1
+      },
+      "lifespan": -1.0,
+      "speed": 125,
+      "brake_speed": 4,
+      "fire_cooldown": 3.5,
+      "components": [
+        {
+          "type": "SpriteRendererComponent",
+          "texture": "Textures/spr_enemy.png"
+        },
+        {
+          "type": "CircleColliderComponent",
+          "radius": 24
+        }
+      ]
+    },
+    {
+      "name": "BulletPrototype",
+      "prototype": true,
+      "type": "Bullet",
+      "tag": "Bullet",
+      "active": true,
+      "velocity": [
+        0,
+        0
+      ],
+      "transform": {
+        "position": [
+          0,
+          0
+        ],
+        "rotation": 0,
+        "scale": 1
+      },
+      "lifespan": 1.5,
+      "speed": 400,
+      "components": [
+        {
+          "type": "SpriteRendererComponent",
+          "texture": "Textures/spr_missile.png"
+        },
+        {
+          "type": "CircleColliderComponent",
+          "radius": 8
         }
       ]
     }

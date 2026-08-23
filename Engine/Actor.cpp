@@ -27,13 +27,8 @@ namespace nu {
 
     void Actor::Update(float dt)
     {
-        // Lifespawn
 
-        if (m_lifespan != -1.0f)
-        {
-            m_lifespan -= dt;
-            m_destroyed = (m_lifespan <= 0.0f);
-        }
+        ProcessLifespan(dt);
 
         for (auto& component : m_components)
         {
@@ -59,17 +54,20 @@ namespace nu {
 
     }
 
-    float Actor::GetRadius() const
+    void Actor::SetTransform(const Transform& transform)
     {
-        /*if (m_model)
+        SetPosition(transform.position);
+        SetRotation(transform.rotation);
+        SetScale(transform.scale);
+    }
+
+    void Actor::ProcessLifespan(float dt)
+    {
+        if (m_lifespan != -1.0f)
         {
-            return m_model->GetRadius() * m_transform.scale * 0.9f;
+            m_lifespan -= dt;
+            m_destroyed = (m_lifespan <= 0.0f);
         }
-        if (m_texture)
-        {
-            return (m_texture->GetSize().Length()) * 0.5f * 0.9f;
-        }*/
-        return 0.0f;
     }
 
     void Actor::Read(const json::value_t& value)

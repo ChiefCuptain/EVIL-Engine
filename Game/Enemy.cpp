@@ -16,7 +16,7 @@ void Enemy::Update(float dt)
 {
     m_fire_timer += dt;
 
-    Player* player = m_scene->GetActorByName<Player>("Player");
+    Player* player = m_scene->GetActorByName<Player>("PlayerPrototype");
     if (player)
     {
         nu::Vector2 direction = player->GetTransform().position - m_transform.position;
@@ -38,43 +38,20 @@ void Enemy::Update(float dt)
         if (m_fire_timer > m_fire_cooldown)
         {
             m_fire_timer = 0.0f;
-            BulletDesc bulletDesc;
-            bulletDesc.name = "Bullet";
-            bulletDesc.tag = "Enemy_Bullet";
-            //bulletDesc.model = assets::bulletModel;
-            bulletDesc.texture = nu::Resources().Get<nu::Texture>("Textures/spr_missile.png", nu::Engine::Get().GetRenderer());
-            bulletDesc.transform = m_transform;
-            bulletDesc.transform.scale = 1.0f;
-            bulletDesc.lifespan = 1.5f;
-            bulletDesc.speed = 400.0f;
 
-            std::unique_ptr<Bullet> bullet = std::make_unique<Bullet>(bulletDesc);
-            m_scene->AddActor(std::move(bullet));
+            auto actor = nu::Factory::Instance().Create<Bullet>("BulletPrototype");
+
+            actor->SetTag("Enemy_Bullet");
+            actor->SetTransform(m_transform);
+            actor->SetScale(1.0f);
+  
+            m_scene->AddActor(std::move(actor));
 
             nu::Engine::Get().GetAudio().PlaySound("enemy_shoot");
 
         }
 
-    }
-
-    //float thrust = m_speed;
-
-    //float rotate = 0.0f;
-
-    //float angleToTarget;
-
-    //if (m_target != nullptr)
-    //{
-    //    angleToTarget = m_transform.position.AngleTo(m_target->GetTransform().position);
-    //    SetRotation(angleToTarget * nu::DegToRad);
-    //    nu::Vector2 velocity{ 1, 0 };
-
-    //    velocity = m_transform.position.DirectionTo(m_target->GetTransform().position) * thrust;
-
-    //    AddVelocity(velocity * dt);
-    //}
-
-    
+    } 
 
 
 
@@ -103,5 +80,12 @@ void Enemy::OnCollision(Actor* other)
     }
 }
 
-// TODO: Add Enemy::Read
+void Enemy::Read(const nu::json::value_t& value)
+{
+    Actor::Read(value);
+
+    JSON_READ_NAME(value, "fire_cooldown", m_fire_cooldown);
+    JSON_READ_NAME(value, "speed", m_speed);
+    JSON_READ_NAME(value, "brake_speed", m_brake_speed);
+}
 

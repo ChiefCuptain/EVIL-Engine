@@ -240,22 +240,16 @@ void nu::EvilSpaceGame::Draw(const nu::Renderer& renderer)
 void nu::EvilSpaceGame::SpawnPlayer()
 {
 	auto actor = Factory::Instance().Create<Actor>("PlayerPrototype");
+	actor->SetPosition({ Engine::Get().GetRenderer().GetWindowWidth() * 0.5f, Engine::Get().GetRenderer().GetWindowHeight() * 0.5f });
 	m_scene->AddActor(std::move(actor));
 }
 
 void nu::EvilSpaceGame::SpawnEnemy()
 {
-	EnemyDesc enemyDesc;
-	enemyDesc.name = "Enemy";
-	enemyDesc.tag = "Enemy";
-	//enemyDesc.model = assets::playerModel;
-	enemyDesc.texture = nu::Resources().Get<nu::Texture>("Textures/spr_enemy.png", nu::Engine::Get().GetRenderer());
-	enemyDesc.velocity = nu::Vector2{ 0.0f };
-	enemyDesc.fire_cooldown = 3.5f;
-	enemyDesc.speed = 125.0f;
+	auto actor = Factory::Instance().Create<Actor>("EnemyPrototype");
 	nu::Vector2 enemyPosition{ 0.0f };
 
-	nu::Vector2 playerPosition{ m_scene->GetActorByName<Player>("Player")->GetTransform().position };
+	nu::Vector2 playerPosition{ m_scene->GetActorByName<Player>("PlayerPrototype")->GetTransform().position };
 
 	do 
 	{
@@ -263,8 +257,7 @@ void nu::EvilSpaceGame::SpawnEnemy()
 		enemyPosition.y = nu::RandomFloat((float)nu::Engine::Get().GetRenderer().GetWindowHeight());
 	} while ((playerPosition - enemyPosition).Length() <= 500);
 	
+	actor->SetPosition(enemyPosition);
 
-	enemyDesc.transform = nu::Transform{ enemyPosition, 0.0f, 0.75f };
-	std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(enemyDesc);
-	m_scene->AddActor(std::move(enemy));
+	m_scene->AddActor(std::move(actor));
 }
