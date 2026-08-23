@@ -15,12 +15,14 @@ namespace nu
 		m_particle_system.Initialize(500);
 		m_input.Initialize();
 		m_audio.Initialize();
+		m_physics.Initialize();
 
 		return true;
 	}
 
 	void Engine::Quit()
 	{
+		m_physics.Quit();
 		m_audio.Quit();
 		m_input.Quit();
 		m_particle_system.Quit();
@@ -33,5 +35,6 @@ namespace nu
 		m_audio.Update();
 		m_input.Update();
 		m_particle_system.Update(m_time.GetDeltaTime());
+		m_physics.Update(m_time.GetDeltaTime());
 	}
 }
