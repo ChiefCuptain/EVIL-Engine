@@ -11,9 +11,10 @@ using namespace nu;
         // don't move this
         SetWorkingDirectory("Assets");
         // don't move this
-
-        auto actor = Factory::Instance().Create<Actor>("Actor");
-        std::cout << actor->IsActive() << "\n";
+        Factory::Instance().Register<Actor>("TestActor");
+        auto testActor = Factory::Instance().Create<Actor>("TestActor");
+        std::cout << testActor->IsActive() << "\n";
+        std::cout << testActor->GetTransform().position.x <<  ", " << testActor->GetTransform().position.y << "\n";
 
         return 0;
         // INITIALIZATION

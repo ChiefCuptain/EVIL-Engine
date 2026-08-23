@@ -42,7 +42,7 @@ void Enemy::Update(float dt)
             bulletDesc.name = "Bullet";
             bulletDesc.tag = "Enemy_Bullet";
             //bulletDesc.model = assets::bulletModel;
-            bulletDesc.texture = nu::Resources().Get<nu::Texture>("Assets/Textures/spr_missile.png", nu::Engine::Get().GetRenderer());
+            bulletDesc.texture = nu::Resources().Get<nu::Texture>("Textures/spr_missile.png", nu::Engine::Get().GetRenderer());
             bulletDesc.transform = m_transform;
             bulletDesc.transform.scale = 1.0f;
             bulletDesc.lifespan = 1.5f;
@@ -93,7 +93,7 @@ void Enemy::OnCollision(Actor* other)
             particle.lifespan = nu::RandomFloat(0.5f, 2.0f);
             particle.velocity = { nu::RandomFloat(-600.0f, 600.0f), nu::RandomFloat(-600.0f, 600.0f) };
 
-            nu::Engine::Get().GetPS().AddParticle(particle, nu::Resources().GetWithID<nu::Texture>("explosion", "Assets/Textures/spr_explosion.png", nu::Engine::Get().GetRenderer()));
+            nu::Engine::Get().GetPS().AddParticle(particle, nu::Resources().GetWithID<nu::Texture>("explosion", "Textures/spr_explosion.png", nu::Engine::Get().GetRenderer()));
 
         }
         nu::Engine::Get().GetAudio().PlaySound("explosion");
@@ -102,4 +102,6 @@ void Enemy::OnCollision(Actor* other)
         
     }
 }
+
+// TODO: Add Enemy::Read
 

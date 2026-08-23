@@ -16,6 +16,7 @@ public:
 		m_speed{ BulletDesc.speed }
 	{}
 
+	CLASS_PROTOTYPE(Bullet)
 
 	void Update(float dt) override;
 

@@ -1,14 +1,36 @@
 {
-  "name": "Jack Nolan",
-  "tag": "Student",
-  "active": true,
-  "transform": {
-    "position": [ 3.1, 4.1 ],
-    "rotation": 25,
-    "scale": 1.5
-  },
-  "velocity": [ 4.0, 4.0 ],
-  "lifespan": -1,
-  "speed": 175,
-  "brake_speed":  4
+  "actors": [
+    {
+      "name": "PlayerPrototype",
+      "prototype": true,
+      "type": "Player",
+      "tag": "Player",
+      "active": true,
+      "velocity": [
+        4,
+        4
+      ],
+      "transform": {
+        "position": [
+          3.1,
+          4.1
+        ],
+        "rotation": 25,
+        "scale": 1.5
+      },
+      "lifespan": -1,
+      "speed": 175,
+      "brake_speed": 4,
+      "components": [
+        {
+          "type": "SpriteRendererComponent",
+          "texture": "Textures/spr_player.png"
+        },
+        {
+          "type": "CircleColliderComponent",
+          "radius": 64
+        }
+      ]
+    }
+  ]
 }

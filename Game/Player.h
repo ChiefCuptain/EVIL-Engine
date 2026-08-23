@@ -6,6 +6,7 @@
 struct PlayerDesc : public nu::ActorDesc
 {
 	float speed = 0.0f;
+	float brake_speed = 0.0f;
 };
 
 class Player : public nu::Actor
@@ -14,8 +15,12 @@ public:
 	Player() = default;
 	Player(const PlayerDesc& playerDesc) :
 		Actor{ playerDesc },
-		m_speed{ playerDesc.speed}
+		m_speed{ playerDesc.speed },
+		m_brake_speed{ playerDesc.brake_speed }
 	{ }
+
+	CLASS_PROTOTYPE(Player)
+
 
 	void Update(float dt) override;
 

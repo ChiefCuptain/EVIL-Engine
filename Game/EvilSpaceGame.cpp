@@ -14,36 +14,33 @@ bool nu::EvilSpaceGame::Initialize()
 	Game::Initialize();
 
 	m_scene = new nu::Scene();
+	m_scene->Load("Data/scene.json");
+
+	nu::Resources().GetWithID<nu::Font>("bigFont", "Fonts/Kubasta.ttf", 120.0f);
+	nu::Resources().GetWithID<nu::Font>("mediumFont", "Fonts/Kubasta.ttf", 60.0f);
+	nu::Resources().GetWithID<nu::Font>("smallFont", "Fonts/Kubasta.ttf", 36.0f);
 
 
-	//m_font = nu::Resources().Get<nu::Font>("Assets/Fonts/Kubasta.ttf", 120.0f);
-	//m_font->Load("Assets/Fonts/Kubasta.ttf", 120.0f);
-
-	m_bigFont = nu::Resources().GetWithID<nu::Font>("bigFont", "Assets/Fonts/Kubasta.ttf", 120.0f);
-	m_mediumFont = nu::Resources().GetWithID<nu::Font>("mediumFont", "Assets/Fonts/Kubasta.ttf", 60.0f);
-	m_smallFont = nu::Resources().GetWithID<nu::Font>("smallFont", "Assets/Fonts/Kubasta.ttf", 36.0f);
-
-
-	m_title_text_1 = new nu::Text(m_bigFont);
+	m_title_text_1 = new nu::Text(nu::Resources().GetWithID<nu::Font>("bigFont", "Fonts/Kubasta.ttf", 120.0f));
 	m_title_text_1->Create(nu::Engine::Get().GetRenderer(),"EVIL", {1.0f, 0.0f, 0.0f});
 
-	m_game_over_text_1 = new nu::Text(m_bigFont);
+	m_game_over_text_1 = new nu::Text(nu::Resources().GetWithID<nu::Font>("bigFont", "Fonts/Kubasta.ttf", 120.0f));
 	m_game_over_text_1->Create(nu::Engine::Get().GetRenderer(), "you died bozo", { 0.3f, 0.0f, 0.0f });
 
-	m_title_text_2 = new nu::Text(m_mediumFont);
+	m_title_text_2 = new nu::Text(nu::Resources().GetWithID<nu::Font>("mediumFont", "Fonts/Kubasta.ttf", 60.0f));
 	m_title_text_2->Create(nu::Engine::Get().GetRenderer(), "space game", { 1.0f, 1.0f, 1.0f });
-	m_game_over_text_2 = new nu::Text(m_mediumFont);
+	m_game_over_text_2 = new nu::Text(nu::Resources().GetWithID<nu::Font>("mediumFont", "Fonts/Kubasta.ttf", 60.0f));
 
-	m_level_text = new nu::Text(m_smallFont);
+	m_level_text = new nu::Text(nu::Resources().GetWithID<nu::Font>("smallFont", "Fonts/Kubasta.ttf", 36.0f));
 	
-	m_lives_text = new nu::Text(m_smallFont);
+	m_lives_text = new nu::Text(nu::Resources().GetWithID<nu::Font>("smallFont", "Fonts/Kubasta.ttf", 36.0f));
 
-	nu::Resources().GetWithID<nu::Texture>("background", "Assets/Textures/spr_bg.png", nu::Engine::Get().GetRenderer());
-	nu::Resources().GetWithID<nu::Texture>("explosion", "Assets/Textures/spr_explosion.png", nu::Engine::Get().GetRenderer());
+	nu::Resources().GetWithID<nu::Texture>("background", "Textures/spr_bg.png", nu::Engine::Get().GetRenderer());
+	nu::Resources().GetWithID<nu::Texture>("explosion", "Textures/spr_explosion.png", nu::Engine::Get().GetRenderer());
 
-	nu::Engine::Get().GetAudio().AddSound("player_shoot", "Assets/Audio/snd_player_shoot.wav");
-	nu::Engine::Get().GetAudio().AddSound("enemy_shoot", "Assets/Audio/snd_enemy_shoot.wav");
-	nu::Engine::Get().GetAudio().AddSound("explosion", "Assets/Audio/snd_explosion.wav");
+	nu::Engine::Get().GetAudio().AddSound("player_shoot", "Audio/snd_player_shoot.wav");
+	nu::Engine::Get().GetAudio().AddSound("enemy_shoot", "Audio/snd_enemy_shoot.wav");
+	nu::Engine::Get().GetAudio().AddSound("explosion", "Audio/snd_explosion.wav");
 
 	return true;
 }
@@ -65,7 +62,7 @@ void nu::EvilSpaceGame::Update(float dt)
 		m_lives_string = std::to_string(m_lives);
 		m_lives_string.append(" Lives");
 
-		m_lives_text = new nu::Text(m_smallFont);
+		m_lives_text = new nu::Text(nu::Resources().GetWithID<nu::Font>("smallFont", "Fonts/Kubasta.ttf", 36.0f));
 		m_lives_text->Create(nu::Engine::Get().GetRenderer(), m_lives_string, { 1.0f, 1.0f, 1.0f });
 
 		m_level = 1;
@@ -73,7 +70,7 @@ void nu::EvilSpaceGame::Update(float dt)
 	case EvilSpaceGame::GameState::StartLevel:
 		m_level_string = "Level ";
 		m_level_string.append(std::to_string(m_level));
-		m_level_text = new nu::Text(m_smallFont);
+		m_level_text = new nu::Text(nu::Resources().GetWithID<nu::Font>("smallFont", "Fonts/Kubasta.ttf", 36.0f));
 		m_level_text->Create(nu::Engine::Get().GetRenderer(), m_level_string, { 1.0f, 1.0f, 1.0f });
 
 
@@ -118,7 +115,7 @@ void nu::EvilSpaceGame::Update(float dt)
 			m_lives_string = std::to_string(m_lives);
 			m_lives_string.append(" Lives");
 
-			m_lives_text = new nu::Text(m_smallFont);
+			m_lives_text = new nu::Text(nu::Resources().GetWithID<nu::Font>("smallFont", "Fonts/Kubasta.ttf", 36.0f));
 			m_lives_text->Create(nu::Engine::Get().GetRenderer(), m_lives_string, { 1.0f, 1.0f, 1.0f });
 			m_gamestate = GameState::StartLevel;
 		}
@@ -135,7 +132,7 @@ void nu::EvilSpaceGame::Update(float dt)
 			m_lives_string = std::to_string(m_lives);
 			m_lives_string.append(" Lives");
 
-			m_lives_text = new nu::Text(m_smallFont);
+			m_lives_text = new nu::Text(nu::Resources().GetWithID<nu::Font>("smallFont", "Fonts/Kubasta.ttf", 36.0f));
 			m_lives_text->Create(nu::Engine::Get().GetRenderer(), m_lives_string, { 1.0f, 1.0f, 1.0f });
 
 			if (m_lives <= 0) 
@@ -196,7 +193,7 @@ void nu::EvilSpaceGame::Draw(const nu::Renderer& renderer)
 	case EvilSpaceGame::GameState::StartLevel:
 		break;
 	case EvilSpaceGame::GameState::Game:
-		nu::Engine::Get().GetRenderer().DrawTexture(*nu::Resources().GetWithID<nu::Texture>("background", "Assets/Textures/spr_bg.png", nu::Engine::Get().GetRenderer()), 0.0f, 0.0f);
+		nu::Engine::Get().GetRenderer().DrawTexture(*nu::Resources().GetWithID<nu::Texture>("background", "Textures/spr_bg.png", nu::Engine::Get().GetRenderer()), 0.0f, 0.0f);
 		m_level_text->Draw(
 			nu::Engine::Get().GetRenderer(),
 			30.0f, 15.0f, false);
@@ -206,7 +203,7 @@ void nu::EvilSpaceGame::Draw(const nu::Renderer& renderer)
 		m_scene->Draw(renderer);
 		break;
 	case EvilSpaceGame::GameState::EndLevel:
-		nu::Engine::Get().GetRenderer().DrawTexture(*nu::Resources().GetWithID<nu::Texture>("background", "Assets/Textures/spr_bg.png", nu::Engine::Get().GetRenderer()), 0.0f, 0.0f);
+		nu::Engine::Get().GetRenderer().DrawTexture(*nu::Resources().GetWithID<nu::Texture>("background", "Textures/spr_bg.png", nu::Engine::Get().GetRenderer()), 0.0f, 0.0f);
 		m_level_text->Draw(
 			nu::Engine::Get().GetRenderer(),
 			30.0f, 15.0f, false);
@@ -216,7 +213,7 @@ void nu::EvilSpaceGame::Draw(const nu::Renderer& renderer)
 		m_scene->Draw(renderer);
 		break;
 	case EvilSpaceGame::GameState::PlayerDeath:
-		nu::Engine::Get().GetRenderer().DrawTexture(*nu::Resources().GetWithID<nu::Texture>("background", "Assets/Textures/spr_bg.png", nu::Engine::Get().GetRenderer()), 0.0f, 0.0f);
+		nu::Engine::Get().GetRenderer().DrawTexture(*nu::Resources().GetWithID<nu::Texture>("background", "Textures/spr_bg.png", nu::Engine::Get().GetRenderer()), 0.0f, 0.0f);
 		m_level_text->Draw(
 			nu::Engine::Get().GetRenderer(),
 			30.0f, 15.0f, false);
@@ -242,17 +239,8 @@ void nu::EvilSpaceGame::Draw(const nu::Renderer& renderer)
 
 void nu::EvilSpaceGame::SpawnPlayer()
 {
-	PlayerDesc playerDesc;
-	playerDesc.name = "Player";
-	playerDesc.tag = "Player";
-	//playerDesc.model = assets::playerModel;
-	playerDesc.texture = nu::Resources().Get<nu::Texture>("Assets/Textures/spr_player.png", nu::Engine::Get().GetRenderer());
-	playerDesc.velocity = nu::Vector2{ 0.0f };
-	playerDesc.transform = nu::Transform{ nu::Vector2{960.0f, 540.0f}, 0.0f, 1.5f };
-	playerDesc.speed = 175.0f;
-
-	std::unique_ptr<Player> player = std::make_unique<Player>(playerDesc);
-	m_scene->AddActor(std::move(player));
+	auto actor = Factory::Instance().Create<Actor>("PlayerPrototype");
+	m_scene->AddActor(std::move(actor));
 }
 
 void nu::EvilSpaceGame::SpawnEnemy()
@@ -261,7 +249,7 @@ void nu::EvilSpaceGame::SpawnEnemy()
 	enemyDesc.name = "Enemy";
 	enemyDesc.tag = "Enemy";
 	//enemyDesc.model = assets::playerModel;
-	enemyDesc.texture = nu::Resources().Get<nu::Texture>("Assets/Textures/spr_enemy.png", nu::Engine::Get().GetRenderer());
+	enemyDesc.texture = nu::Resources().Get<nu::Texture>("Textures/spr_enemy.png", nu::Engine::Get().GetRenderer());
 	enemyDesc.velocity = nu::Vector2{ 0.0f };
 	enemyDesc.fire_cooldown = 3.5f;
 	enemyDesc.speed = 125.0f;

@@ -16,7 +16,7 @@ namespace nu
 		virtual void Update(float dt) {}
 
 		Actor* GetOwner() const { return m_owner; }
-		Actor* SetOwner(Actor* owner) { m_owner = owner; }
+		void SetOwner(Actor* owner) { m_owner = owner; }
 	protected:
 		Actor* m_owner = nullptr;
 	};

@@ -20,6 +20,9 @@ public:
 		m_fire_cooldown{ enemyDesc.fire_cooldown }
 	{ }
 
+	CLASS_PROTOTYPE(Enemy)
+
+
 	void Update(float dt) override;
 
 	void OnCollision(Actor* other) override;

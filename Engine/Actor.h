@@ -3,7 +3,7 @@
 #include "Transform.h"
 #include "Model.h"
 #include "Resource.h"
-#include "Component.h"
+#include "Framework/Component.h"
 #include <string>
 #include <memory>
 namespace nu
@@ -31,10 +31,12 @@ namespace nu
             m_tag{ actorDesc.tag },
             m_transform{ actorDesc.transform },
             m_velocity{ actorDesc.velocity },
-            m_lifespan{ actorDesc.lifespan },
-            m_model{ actorDesc.model },
-            m_texture{ actorDesc.texture }
+            m_lifespan{ actorDesc.lifespan }
         { }
+
+        Actor(const Actor& other);
+
+        CLASS_PROTOTYPE(Actor)
 
         virtual void Update(float dt);
 
@@ -66,6 +68,11 @@ namespace nu
 
         virtual void Read(const json::value_t& value) override;
 
+        void AddComponent(std::unique_ptr<Component> component);
+
+        template <std::derived_from<Component> T>
+        T* GetComponent();
+
         friend Scene;
 
     protected:
@@ -77,11 +84,23 @@ namespace nu
         float m_lifespan = -1.0f;
         bool m_destroyed = false;
 
-        res_t<Model> m_model;
-        res_t<Texture> m_texture;
-
-        std::vector<Component*> m_components;
+        std::vector<std::unique_ptr<Component>> m_components;
 
         Scene* m_scene = nullptr;
     };
+
+    template<std::derived_from<Component> T>
+    inline T* Actor::GetComponent()
+    {
+        for (auto& component : m_components)
+        {
+            auto result = dynamic_cast<T*>(component.get());
+            if (result)
+            {
+                return result;
+            }
+        }
+
+        return nullptr;
+    }
 }
