@@ -1,31 +1,31 @@
 #pragma once
 
-#include "Random.h"
-#include "Vector2.h"
-#include "Vector3.h"
-#include "Transform.h"
+#include "Core/Random.h"
+#include "Math/Vector2.h"
+#include "Math/Vector3.h"
+#include "Math/Transform.h"
 
-#include "Actor.h"
-#include "Scene.h"
-#include "Texture.h"
-#include "File.h"
-#include "JSON.h"
-#include "StringUtils.h"
+#include "Framework/Actor.h"
+#include "Framework/Scene.h"
+#include "Renderer/Texture.h"
+#include "Core/File.h"
+#include "Serialization/JSON.h"
+#include "Core/StringUtils.h"
 
-#include "Factory.h"
-#include "ResourceManager.h"
+#include "Core/Factory.h"
+#include "Resources/ResourceManager.h"
 
-#include "Renderer.h"
-#include "Text.h"
-#include "Input.h"
-#include "GameTime.h"
+#include "Renderer/Renderer.h"
+#include "Renderer/Text.h"
+#include "Input/Input.h"
+#include "Core/GameTime.h"
 #include "Timer.h"
-#include "MathUtil.h"
-#include "ParticleSystem.h"
-#include "Audio.h"
-#include "Physics.h"
+#include "Math/MathUtil.h"
+#include "Renderer/ParticleSystem.h"
+#include "Audio/Audio.h"
+#include "Physics/Physics.h"
 
-#include "Game.h"
+#include "Framework/Game.h"
 
 #include <iostream>
 #include <vector>

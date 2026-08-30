@@ -1,6 +1,6 @@
 #pragma once
 #include "ColliderComponent.h"
-#include "JSON.h"
+#include "Serialization/JSON.h"
 
 namespace nu
 {

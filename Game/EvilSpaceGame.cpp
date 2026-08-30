@@ -1,9 +1,9 @@
 #include "EvilSpaceGame.h"
-#include "Scene.h"
+#include "Framework/Scene.h"
 #include "Player.h"
 #include "Assets.h"
 #include "Enemy.h"
-#include "Random.h"
+#include "Core/Random.h"
 #include <iostream>
 #include <string>
 #include <memory>
@@ -240,7 +240,6 @@ void nu::EvilSpaceGame::Draw(const nu::Renderer& renderer)
 void nu::EvilSpaceGame::SpawnPlayer()
 {
 	auto actor = Factory::Instance().Create<Actor>("PlayerPrototype");
-	actor->SetPosition({ Engine::Get().GetRenderer().GetWindowWidth() * 0.5f, Engine::Get().GetRenderer().GetWindowHeight() * 0.5f });
 	m_scene->AddActor(std::move(actor));
 }
 

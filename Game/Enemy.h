@@ -2,7 +2,8 @@
 
 #pragma once
 
-#include "Actor.h"
+#include "Framework/Actor.h"
+#include "Components/PhysicsComponent.h"
 
 struct EnemyDesc : public nu::ActorDesc
 {

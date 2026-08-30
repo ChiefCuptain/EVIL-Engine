@@ -1,6 +1,7 @@
 #include "Bullet.h"
-#include "MathUtil.h"
-#include "Factory.h"
+#include "Math/MathUtil.h"
+#include "Core/Factory.h"
+#include "Components/PhysicsComponent.h"
 
 FACTORY_REGISTER(Bullet);
 
@@ -11,7 +12,8 @@ void Bullet::Update(float dt)
 	nu::Vector2 velocity = forward.Rotate(m_transform.rotation * nu::DegToRad) * m_speed;
 	m_life_timer.Decrement(dt);
 	if (m_life_timer.IsElapsed()) m_destroyed = true;
-	SetVelocity(velocity);
+	nu::PhysicsComponent* physicsComponent = GetComponent<nu::PhysicsComponent>();
+	physicsComponent->SetVelocity(velocity);
 	Actor::Update(dt);
 }
 

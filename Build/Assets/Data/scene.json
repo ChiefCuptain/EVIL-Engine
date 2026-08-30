@@ -1,6 +1,50 @@
 {
   "actors": [
     {
+      "name": "Coin",
+      "prototype": false,
+      "type": "Actor",
+      "tag": "Coin",
+      "active": true,
+      "transform": {
+        "position": [
+          300,
+          300
+        ],
+        "rotation": 0,
+        "scale": 3.0
+      },
+      "components": [
+        {
+          "type": "SpriteAnimationRendererComponent",
+          "texture_frames": "Animations/coin_spin.json",
+          "fps": 12,
+          "loop": true
+        }
+      ]
+    },
+    {
+      "name": "Tilemap",
+      "prototype": false,
+      "type": "Actor",
+      "tag": "Tilemap",
+      "active": true,
+      "transform": {
+        "position": [
+          0,
+          0
+        ],
+        "rotation": 0,
+        "scale": 1.0
+      },
+      "components": [
+        {
+          "type": "TilemapRendererComponent",
+          "tilemap_name": "Textures/Tilemaps/world.json"
+        }
+      ]
+    },
+    {
       "name": "PlayerPrototype",
       "prototype": true,
       "type": "Player",
@@ -27,8 +71,11 @@
           "texture": "Textures/spr_player.png"
         },
         {
-          "type": "CircleColliderComponent",
-          "radius": 24
+          "type": "Box2DPhysicsComponent",
+          "linear_damping": 1.0,
+          "angular_damping": 2.0,
+          "size": [ 48, 48 ],
+          "gravity_scale": 0.0
         }
       ]
     },
@@ -60,8 +107,11 @@
           "texture": "Textures/spr_enemy.png"
         },
         {
-          "type": "CircleColliderComponent",
-          "radius": 24
+          "type": "Box2DPhysicsComponent",
+          "linear_damping": 0.0,
+          "angular_damping": 2.0,
+          "size": [ 48, 48 ],
+          "gravity_scale": 0.0
         }
       ]
     },
@@ -91,8 +141,12 @@
           "texture": "Textures/spr_missile.png"
         },
         {
-          "type": "CircleColliderComponent",
-          "radius": 8
+          "type": "Box2DPhysicsComponent",
+          "linear_damping": 0.0,
+          "angular_damping": 2.0,
+          "size": [ 16, 16 ],
+          "gravity_scale": 0.0,
+          "is_sensor": true
         }
       ]
     }

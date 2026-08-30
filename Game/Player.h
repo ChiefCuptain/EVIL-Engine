@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Actor.h"
-#include <JSON.h>
+#include "Framework/Actor.h"
+#include "Serialization/JSON.h"
 
 struct PlayerDesc : public nu::ActorDesc
 {
@@ -35,5 +35,4 @@ public:
 private:
 	float m_speed = 175.0f;
 	float m_brake_speed = 4.0f;
-	bool m_mouse_drag = false;
 };

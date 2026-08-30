@@ -13,6 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Assets\Scenes">
+      <UniqueIdentifier>{dcd7e641-ef85-4c1e-9e47-c2712a6570ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Animations">
+      <UniqueIdentifier>{df11ec51-eea0-4c89-b1ae-19d25565eed0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Tilemaps">
+      <UniqueIdentifier>{58d2a1c9-111f-4f38-ab6f-65c437c45009}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -53,7 +62,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Build\Assets\Data\scene.json">
-      <Filter>Assets</Filter>
+      <Filter>Assets\Scenes</Filter>
+    </None>
+    <None Include="..\Build\Assets\Animations\coin_spin.json">
+      <Filter>Assets\Animations</Filter>
+    </None>
+    <None Include="..\Build\Assets\Textures\Tilemaps\world.json">
+      <Filter>Assets\Tilemaps</Filter>
     </None>
   </ItemGroup>
 </Project>

@@ -1,14 +1,14 @@
 #include "pch.h"
 #include "Enemy.h"
 #include "Player.h"
-#include "Renderer.h"
-#include "MathUtil.h"
+#include "Renderer/Renderer.h"
+#include "Math/MathUtil.h"
 #include "Engine.h"
 #include "Bullet.h"
 #include "Assets.h"
+#include "Resources/ResourceManager.h"
 
 #include <cmath>
-#include <ResourceManager.h>
 
 FACTORY_REGISTER(Enemy);
 
@@ -20,19 +20,27 @@ void Enemy::Update(float dt)
     if (player)
     {
         nu::Vector2 direction = player->GetTransform().position - m_transform.position;
-        float rotation = direction.Angle();
-        SetRotation(rotation * nu::RadToDeg);
-        nu::Vector2 forward{ 1, 0 };
-        forward = forward.Rotate(m_transform.rotation * nu::DegToRad);
-        AddVelocity(forward * m_speed * dt);
+        float rotation = direction.AngleTo(nu::Vector2{0.0f});
+        nu::PhysicsComponent* physicsComponent = GetComponent<nu::PhysicsComponent>();
+        if (physicsComponent)
+        {
+            nu::Vector2 forward{ 1, 0 };
+            forward = forward.Rotate(m_transform.rotation * nu::DegToRad);
+            nu::Vector2 force = forward * m_speed;
 
-        if ((m_velocity.x > 0 && GetTransform().position.x > player->GetTransform().position.x) || (m_velocity.x < 0 && GetTransform().position.x < player->GetTransform().position.x))
-        {
-            m_velocity.x *= (1.0f / (1.0f + m_brake_speed * dt));
-        }
-        if ((m_velocity.y > 0 && GetTransform().position.y > player->GetTransform().position.y) || (m_velocity.y < 0 && GetTransform().position.y < player->GetTransform().position.y))
-        {
-            m_velocity.y *= (1.0f / (1.0f + m_brake_speed * dt));
+            physicsComponent->ApplyForce(force);
+            physicsComponent->SetRotation(rotation * nu::DegToRad);
+
+
+            if ((physicsComponent->GetVelocity().x > 0 && GetTransform().position.x > player->GetTransform().position.x) || (physicsComponent->GetVelocity().x < 0 && GetTransform().position.x < player->GetTransform().position.x))
+            {
+                physicsComponent->SetVelocity({ physicsComponent->GetVelocity().x * (1.0f / (1.0f + m_brake_speed * dt)), physicsComponent->GetVelocity().y });
+            }
+            if ((physicsComponent->GetVelocity().y > 0 && GetTransform().position.y > player->GetTransform().position.y) || (physicsComponent->GetVelocity().y < 0 && GetTransform().position.y < player->GetTransform().position.y))
+            {
+                physicsComponent->SetVelocity({ physicsComponent->GetVelocity().x, physicsComponent->GetVelocity().y * (1.0f / (1.0f + m_brake_speed * dt)) });
+            }
+
         }
 
         if (m_fire_timer > m_fire_cooldown)

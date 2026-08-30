@@ -179,7 +179,9 @@
     <ClInclude Include="Player.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\Build\Assets\Animations\coin_spin.json" />
     <None Include="..\Build\Assets\Data\scene.json" />
+    <None Include="..\Build\Assets\Textures\Tilemaps\world.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

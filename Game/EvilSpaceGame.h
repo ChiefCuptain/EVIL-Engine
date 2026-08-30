@@ -1,6 +1,6 @@
 #pragma once
-#include "Game.h"
-#include "ResourceManager.h"
+#include "Framework/Game.h"
+#include "Resources/ResourceManager.h"
 
 class Scene;
 namespace nu
