@@ -41,6 +41,11 @@ void Enemy::Update(float dt)
                 physicsComponent->SetVelocity({ physicsComponent->GetVelocity().x, physicsComponent->GetVelocity().y * (1.0f / (1.0f + m_brake_speed * dt)) });
             }
 
+            nu::Vector2 position = physicsComponent->GetPosition();
+            position.x = nu::Clamp(0.0f, 1920.0f, position.x);
+            position.y = nu::Clamp(0.0f, 1080.0f, position.y);
+            physicsComponent->SetPosition(position);
+
         }
 
         if (m_fire_timer > m_fire_cooldown)

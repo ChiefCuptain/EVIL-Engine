@@ -86,7 +86,8 @@ namespace nu {
         Object::Read(value);
 
         JSON_READ_NAME(value, "tag", m_tag);
-        if (JSON_HAS(value, "transform")) m_transform.Read(JSON_GET_NAME(value, "transform"));
+        if (JSON_HAS_NAME(value, "transform")) m_transform.Read(JSON_GET_NAME(value, "transform"));
+        auto& test = JSON_GET_NAME(value, "transform");
         JSON_READ_NAME(value, "persistent", m_persistent);
         JSON_READ_NAME(value, "lifespan", m_lifespan);
 

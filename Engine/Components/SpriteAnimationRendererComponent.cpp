@@ -29,7 +29,7 @@ namespace nu
 		if (!m_textureFrames) return;
 
 		auto& transform = GetOwner()->GetTransform();
-		r.DrawTexture(*m_textureFrames->GetTexture(), m_textureFrames->GetFrameRect(m_frame), transform);
+		r.DrawTexture(*(m_textureFrames->GetTexture()), m_textureFrames->GetFrameRect(m_frame), transform);
 	}
 
 	void SpriteAnimationRendererComponent::Read(const json::value_t& value)

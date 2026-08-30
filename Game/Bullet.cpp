@@ -13,7 +13,14 @@ void Bullet::Update(float dt)
 	m_life_timer.Decrement(dt);
 	if (m_life_timer.IsElapsed()) m_destroyed = true;
 	nu::PhysicsComponent* physicsComponent = GetComponent<nu::PhysicsComponent>();
-	physicsComponent->SetVelocity(velocity);
+	if (physicsComponent)
+	{
+		physicsComponent->SetVelocity(velocity);
+		nu::Vector2 position = physicsComponent->GetPosition();
+		position.x = nu::Clamp(0.0f, 1920.0f, position.x);
+		position.y = nu::Clamp(0.0f, 1080.0f, position.y);
+		physicsComponent->SetPosition(position);
+	}
 	Actor::Update(dt);
 }
 

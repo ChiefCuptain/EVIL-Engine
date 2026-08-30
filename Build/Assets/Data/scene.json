@@ -5,6 +5,7 @@
       "prototype": false,
       "type": "Actor",
       "tag": "Coin",
+      "persistent": true,
       "active": true,
       "transform": {
         "position": [
@@ -12,7 +13,7 @@
           300
         ],
         "rotation": 0,
-        "scale": 3.0
+        "scale": 1.0
       },
       "components": [
         {

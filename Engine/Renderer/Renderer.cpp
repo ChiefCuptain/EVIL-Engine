@@ -206,7 +206,7 @@ namespace nu
         sourceRect.x = source.x;
         sourceRect.y = source.y;
         sourceRect.w = source.w;
-        sourceRect.x = source.h;
+        sourceRect.h = source.h;
 
         SDL_FRect destRect;
         destRect.w = source.w * transform.scale;
