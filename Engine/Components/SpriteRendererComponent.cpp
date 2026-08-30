@@ -5,8 +5,6 @@
 #include "Resources/ResourceManager.h"
 #include "Engine.h"
 
-#include <string>
-
 namespace nu
 {
 	FACTORY_REGISTER(SpriteRendererComponent);

@@ -39,17 +39,17 @@
     <Filter Include="Core">
       <UniqueIdentifier>{91015c94-8061-45ac-a8e6-00e53988545c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\Header Files">
+    <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
-      <Filter>Framework\Header Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Timer.h">
-      <Filter>Framework\Header Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Components\RendererComponent.h">
       <Filter>Components</Filter>

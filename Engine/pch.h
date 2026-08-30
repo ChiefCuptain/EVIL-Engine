@@ -20,6 +20,7 @@
 #include <fstream>
 #include <memory>
 #include <algorithm>
+
 // Third-Party
 #include <SDL3/SDL.h>
 #include <SDL3_image/SDL_image.h>
