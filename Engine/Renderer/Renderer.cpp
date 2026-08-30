@@ -134,7 +134,7 @@ namespace nu
         {
             flip_type = SDL_FLIP_VERTICAL;
         }
-
+        SDL_SetTextureScaleMode(texture.m_texture, SDL_SCALEMODE_NEAREST);
         SDL_RenderTextureRotated(m_renderer, texture.m_texture, NULL, &destRect, angle, NULL, flip_type);
     }
 
@@ -164,7 +164,7 @@ namespace nu
         {
             flip_type = SDL_FLIP_VERTICAL;
         }
-
+        SDL_SetTextureScaleMode(texture.m_texture, SDL_SCALEMODE_NEAREST);
         SDL_RenderTextureRotated(m_renderer, texture.m_texture, NULL, &destRect, transform.rotation, NULL, flip_type);
     }
 
@@ -174,7 +174,7 @@ namespace nu
         sourceRect.x = source.x;
         sourceRect.y = source.y;
         sourceRect.w = source.w;
-        sourceRect.x = source.h;
+        sourceRect.h = source.h;
 
         SDL_FRect destRect;
         destRect.x = x;
@@ -196,7 +196,7 @@ namespace nu
         {
             flip_type = SDL_FLIP_VERTICAL;
         }
-
+        SDL_SetTextureScaleMode(texture.m_texture, SDL_SCALEMODE_NEAREST);
         SDL_RenderTextureRotated(m_renderer, texture.m_texture, &sourceRect, &destRect, angle, NULL, flip_type);
     }
 
@@ -230,7 +230,7 @@ namespace nu
         {
             flip_type = SDL_FLIP_VERTICAL;
         }
-
+        SDL_SetTextureScaleMode(texture.m_texture, SDL_SCALEMODE_NEAREST);
         SDL_RenderTextureRotated(m_renderer, texture.m_texture, &sourceRect, &destRect, transform.rotation, NULL, flip_type);
     }
 

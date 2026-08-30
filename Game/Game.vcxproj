@@ -159,12 +159,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Assets.cpp" />
-    <ClCompile Include="Bullet.cpp" />
-    <ClCompile Include="Enemy.cpp" />
-    <ClCompile Include="EvilSpaceGame.cpp" />
+    <ClCompile Include="DinkiverseSandbox\DinkiverseSandbox.cpp" />
+    <ClCompile Include="EvilSpaceGame\Assets.cpp" />
+    <ClCompile Include="EvilSpaceGame\Bullet.cpp" />
+    <ClCompile Include="EvilSpaceGame\Enemy.cpp" />
+    <ClCompile Include="EvilSpaceGame\EvilSpaceGame.cpp" />
+    <ClCompile Include="EvilSpaceGame\Player.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Engine\Engine.vcxproj">
@@ -172,16 +173,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Assets.h" />
-    <ClInclude Include="Bullet.h" />
-    <ClInclude Include="Enemy.h" />
-    <ClInclude Include="EvilSpaceGame.h" />
-    <ClInclude Include="Player.h" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\Build\Assets\Animations\coin_spin.json" />
     <None Include="..\Build\Assets\Data\scene.json" />
     <None Include="..\Build\Assets\Textures\Tilemaps\world.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DinkiverseSandbox\DinkiverseSandbox.h" />
+    <ClInclude Include="EvilSpaceGame\Assets.h" />
+    <ClInclude Include="EvilSpaceGame\Bullet.h" />
+    <ClInclude Include="EvilSpaceGame\Enemy.h" />
+    <ClInclude Include="EvilSpaceGame\EvilSpaceGame.h" />
+    <ClInclude Include="EvilSpaceGame\Player.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

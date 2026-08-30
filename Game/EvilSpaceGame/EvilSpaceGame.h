@@ -20,10 +20,6 @@ namespace nu
 		};
 	public:
 		EvilSpaceGame() = default;
-		EvilSpaceGame(nu::Scene* scene) :
-			Game{ scene }
-		{
-		}
 
 		bool Initialize() override;
 

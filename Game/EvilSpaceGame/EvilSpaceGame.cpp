@@ -11,9 +11,10 @@
 
 bool nu::EvilSpaceGame::Initialize()
 {
+	SetWorkingDirectory("EvilSpaceGame");
 	Game::Initialize();
 
-	m_scene = new nu::Scene();
+	m_scene = std::make_unique<Scene>();
 	m_scene->Load("Data/scene.json");
 
 	nu::Resources().GetWithID<nu::Font>("bigFont", "Fonts/Kubasta.ttf", 120.0f);

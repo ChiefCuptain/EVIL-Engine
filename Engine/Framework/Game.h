@@ -8,8 +8,8 @@ namespace nu
 	class Game
 	{
 	public:
-		Game() = default;
-		Game(Scene* scene) : m_scene{scene} {}
+		Game();
+		~Game();
 
 		virtual bool Initialize() { return true; }
 		virtual void Quit() {}
@@ -17,10 +17,10 @@ namespace nu
 		virtual void Update(float dt);
 		virtual void Draw(const class Renderer& renderer);
 
-		void SetScene(Scene* scene) { m_scene = scene; }
+		void SetScene(std::unique_ptr<Scene> scene);
 
 
 	protected:
-		Scene* m_scene = nullptr;
+		std::unique_ptr<Scene> m_scene;
 	};
 }

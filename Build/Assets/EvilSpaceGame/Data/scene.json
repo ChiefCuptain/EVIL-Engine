@@ -29,6 +29,28 @@
       "prototype": false,
       "type": "Actor",
       "tag": "Tilemap",
+      "persistent": true,
+      "active": true,
+      "transform": {
+        "position": [
+          0,
+          0
+        ],
+        "rotation": 0,
+        "scale": 1.0
+      },
+      "components": [
+        {
+          "type": "TilemapRendererComponent",
+          "tilemap_name": "Textures/Tilemaps/world.json"
+        }
+      ]
+    },
+    {
+      "name": "Tilemap",
+      "prototype": false,
+      "type": "Actor",
+      "tag": "Tilemap",
       "active": true,
       "transform": {
         "position": [

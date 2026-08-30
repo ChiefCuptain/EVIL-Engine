@@ -1,5 +1,4 @@
-#include "EvilSpaceGame.h"
-#include "Player.h"
+#include "DinkiverseSandbox/DinkiverseSandbox.h"
 #include <vector>
 #include <map>
 #include <memory>
@@ -15,8 +14,8 @@ using namespace nu;
 
         // INITIALIZATION
         Engine::Get().Initialize();
-        EvilSpaceGame game;
-        game.Initialize();
+        std::unique_ptr<Game> game = std::make_unique<DinkiverseSandbox>();
+        game->Initialize();
 
         // MAIN LOOP
         bool quit = false;
@@ -39,18 +38,20 @@ using namespace nu;
             float dt = Engine::Get().GetTime().GetDeltaTime();
 
             // Game
-            game.Update(dt);
+            game->Update(dt);
 
             // RENDER
             Engine::Get().GetRenderer().SetColor(0, 0, 0); // Set render draw color to black
             Engine::Get().GetRenderer().Clear(); // Clear the renderer
 
-            game.Draw(Engine::Get().GetRenderer());
+            game->Draw(Engine::Get().GetRenderer());
 
             Engine::Get().GetPS().Draw(Engine::Get().GetRenderer());
 
             Engine::Get().GetRenderer().RenderPresent();// Render the screen
         }
+
+        game.reset();
 
         // SHUTDOWN
         Engine::Get().Quit();

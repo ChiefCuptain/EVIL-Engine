@@ -22,43 +22,12 @@
     <Filter Include="Assets\Tilemaps">
       <UniqueIdentifier>{58d2a1c9-111f-4f38-ab6f-65c437c45009}</UniqueIdentifier>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Assets.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Bullet.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EvilSpaceGame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Enemy.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Assets.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Bullet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EvilSpaceGame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <Filter Include="EvilSpaceGame">
+      <UniqueIdentifier>{639209ec-a2e1-4ee9-929e-aae166b9b7a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DinkiverseSandbox">
+      <UniqueIdentifier>{f56abb0c-3bd1-493c-82f7-f4e5e3bd23da}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Build\Assets\Data\scene.json">
@@ -70,5 +39,46 @@
     <None Include="..\Build\Assets\Textures\Tilemaps\world.json">
       <Filter>Assets\Tilemaps</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="EvilSpaceGame\Assets.cpp">
+      <Filter>EvilSpaceGame</Filter>
+    </ClCompile>
+    <ClCompile Include="EvilSpaceGame\Bullet.cpp">
+      <Filter>EvilSpaceGame</Filter>
+    </ClCompile>
+    <ClCompile Include="EvilSpaceGame\Enemy.cpp">
+      <Filter>EvilSpaceGame</Filter>
+    </ClCompile>
+    <ClCompile Include="EvilSpaceGame\EvilSpaceGame.cpp">
+      <Filter>EvilSpaceGame</Filter>
+    </ClCompile>
+    <ClCompile Include="EvilSpaceGame\Player.cpp">
+      <Filter>EvilSpaceGame</Filter>
+    </ClCompile>
+    <ClCompile Include="DinkiverseSandbox\DinkiverseSandbox.cpp">
+      <Filter>DinkiverseSandbox</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="EvilSpaceGame\Assets.h">
+      <Filter>EvilSpaceGame</Filter>
+    </ClInclude>
+    <ClInclude Include="EvilSpaceGame\Bullet.h">
+      <Filter>EvilSpaceGame</Filter>
+    </ClInclude>
+    <ClInclude Include="EvilSpaceGame\Enemy.h">
+      <Filter>EvilSpaceGame</Filter>
+    </ClInclude>
+    <ClInclude Include="EvilSpaceGame\EvilSpaceGame.h">
+      <Filter>EvilSpaceGame</Filter>
+    </ClInclude>
+    <ClInclude Include="EvilSpaceGame\Player.h">
+      <Filter>EvilSpaceGame</Filter>
+    </ClInclude>
+    <ClInclude Include="DinkiverseSandbox\DinkiverseSandbox.h">
+      <Filter>DinkiverseSandbox</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
