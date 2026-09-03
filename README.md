@@ -1,9 +1,12 @@
-<img width="525" height="433" alt="image" src="https://github.com/user-attachments/assets/9744c8e7-4d1f-4098-ba37-754d86687d38" />
-**Dinkiverse Sandbox**
+<img width="525" height="433" alt="image" src="https://github.com/user-attachments/assets/9744c8e7-4d1f-4098-ba37-754d86687d38" />  
+
+**Dinkiverse Sandbox**  
+
 Made using my **EVIL Engine**
 
 # Description
-*Dinkiverse Sandbox* is a simple program that attempts to replicate the game Universe Sandbox.
+*Dinkiverse Sandbox* is a simple program that attempts to replicate the game Universe Sandbox.  
+
 Click the mouse to launch planets around the central star. Watch as the planets orbit around the star!
 
 # Core Features
@@ -13,7 +16,7 @@ Click the mouse to launch planets around the central star. Watch as the planets 
 * See the planet's historical path
 * Launch planets into THE POWER OF THE UNFORGIVING SUN
 # Known Issues
-* Orbits degrade over time, slowly getting larger when it should stay the same
+* Orbits elevate over time, slowly getting larger when it *should* stay the same
 * Collisions occasionally causes a Box2D b2enlargedNode assertion
 # Libraries Used
 * SDL3
