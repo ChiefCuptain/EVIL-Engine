@@ -25,7 +25,7 @@ namespace nu
 
 		void Update(float dt) override;
 
-		void Draw(const nu::Renderer& renderer) override;
+		void Draw(nu::Renderer& renderer) override;
 
 		void SpawnPlayer();
 

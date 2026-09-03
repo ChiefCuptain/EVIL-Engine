@@ -159,6 +159,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DinkiverseSandbox\CameraController.cpp" />
+    <ClCompile Include="DinkiverseSandbox\CelestialBody.cpp" />
     <ClCompile Include="DinkiverseSandbox\DinkiverseSandbox.cpp" />
     <ClCompile Include="EvilSpaceGame\Assets.cpp" />
     <ClCompile Include="EvilSpaceGame\Bullet.cpp" />
@@ -173,12 +175,19 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\Build\Assets\Animations\coin_spin.json" />
-    <None Include="..\Build\Assets\Data\scene.json" />
-    <None Include="..\Build\Assets\Textures\Tilemaps\world.json" />
+    <None Include="..\Build\Assets\DinkiverseSandbox\Animations\planet_medium.json" />
+    <None Include="..\Build\Assets\DinkiverseSandbox\Animations\planet_small.json" />
+    <None Include="..\Build\Assets\DinkiverseSandbox\Animations\star.json" />
+    <None Include="..\Build\Assets\DinkiverseSandbox\Scenes\scene.json" />
+    <None Include="..\Build\Assets\EvilSpaceGame\Animations\coin_spin.json" />
+    <None Include="..\Build\Assets\EvilSpaceGame\Data\scene.json" />
+    <None Include="..\Build\Assets\EvilSpaceGame\Textures\Tilemaps\world.json" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DinkiverseSandbox\CameraController.h" />
+    <ClInclude Include="DinkiverseSandbox\Constants.h" />
     <ClInclude Include="DinkiverseSandbox\DinkiverseSandbox.h" />
+    <ClInclude Include="DinkiverseSandbox\CelestialBody.h" />
     <ClInclude Include="EvilSpaceGame\Assets.h" />
     <ClInclude Include="EvilSpaceGame\Bullet.h" />
     <ClInclude Include="EvilSpaceGame\Enemy.h" />

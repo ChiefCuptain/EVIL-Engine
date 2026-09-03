@@ -61,6 +61,9 @@ namespace nu
         void SetDestroyed(bool destroy = true) { m_destroyed = destroy; }
         bool GetDestroyed() const { return m_destroyed; }
 
+        void SetDestroyedQueued(bool destroy = true) { m_queued_destruction = destroy; }
+        bool GetDestroyedQueued() const { return m_queued_destruction; }
+
         void ProcessLifespan(float dt);
 
         float GetRadius() const;
@@ -78,10 +81,11 @@ namespace nu
 
     protected:
         std::string m_tag;
-
+        std::string m_type;
         Transform m_transform;
         float m_lifespan = -1.0f;
         bool m_destroyed = false;
+        bool m_queued_destruction = false;
         bool m_persistent = false;
 
         std::vector<std::unique_ptr<Component>> m_components;

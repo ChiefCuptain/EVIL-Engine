@@ -175,7 +175,7 @@ void nu::EvilSpaceGame::Update(float dt)
 	}
 }
 
-void nu::EvilSpaceGame::Draw(const nu::Renderer& renderer)
+void nu::EvilSpaceGame::Draw(nu::Renderer& renderer)
 {
 	switch (m_gamestate)
 	{

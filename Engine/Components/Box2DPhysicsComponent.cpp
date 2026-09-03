@@ -3,6 +3,7 @@
 #include "Core/Factory.h"
 #include "Framework/Actor.h"
 #include "Engine.h"
+#include "../../Game/DinkiverseSandbox/CelestialBody.h"
 
 namespace nu
 {
@@ -19,6 +20,12 @@ namespace nu
 	{
 		m_bodyDef.actor = GetOwner();
 		m_physicsBody = std::make_unique<PhysicsBody>(GetOwner()->GetTransform(), m_size, m_bodyDef, Engine::Get().GetPhysics());
+
+		auto celestialBody = dynamic_cast<CelestialBody*>(m_bodyDef.actor);
+		if (celestialBody)
+		{
+			SetVelocity(celestialBody->GetStartVelocity());
+		}
 	}
 
 	void Box2DPhysicsComponent::Update(float dt)
@@ -43,6 +50,7 @@ namespace nu
 		JSON_READ_NAME(value, "restitution", m_bodyDef.restitution);
 		JSON_READ_NAME(value, "density", m_bodyDef.density);
 		JSON_READ_NAME(value, "is_sensor", m_bodyDef.isSensor);
+		JSON_READ_NAME(value, "is_bullet", m_bodyDef.isBullet);
 
 		std::string shapeName;
 		JSON_READ_NAME(value, "shape", shapeName);
@@ -54,6 +62,7 @@ namespace nu
 			else if (string::EqualsIgnoreCase(shapeName, "circle")) m_bodyDef.shape = PhysicsBody::Shape::Circle;
 		}
 	}
+
 
 	void Box2DPhysicsComponent::ApplyForce(const Vector2& force)
 	{
@@ -103,6 +112,11 @@ namespace nu
 	float Box2DPhysicsComponent::GetRotation() const
 	{
 		return m_physicsBody->GetRotation();
+	}
+
+	float Box2DPhysicsComponent::GetMass() const
+	{
+		return m_physicsBody->GetMass();
 	}
 
 }

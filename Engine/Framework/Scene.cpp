@@ -4,10 +4,11 @@
 #include "Framework/Actor.h"
 #include "Core/Factory.h"
 #include "Components/ColliderComponent.h"
+#include "Engine.h"
 
 namespace nu
 {
-	
+
 	bool Scene::Load(const std::string& sceneName)
 	{
 		json::document_t document;
@@ -49,22 +50,26 @@ namespace nu
 
 	void Scene::AddActor(std::unique_ptr<Actor> actor)
 	{
-			actor->m_scene = this;
-		m_pending_actors.push_back(std::move(actor)); 
+		actor->m_scene = this;
+		m_pending_actors.push_back(std::move(actor));
 	}
 
 	void Scene::Update(float dt)
 	{
+		Engine::Get().GetPhysics().Update(dt);
+
 		for (auto& actor : m_actors)
 		{
 			actor->Update(dt);
 		}
 
-		//UpdateCollisions();
+		std::erase_if(m_actors, [](auto& actor) {
+			if (actor->GetDestroyedQueued()) { actor->OnDestroy(); return true; }
+			return false;
+			});
+		for (auto& actor : m_actors)
+			if (actor->m_destroyed) actor->SetDestroyedQueued();
 
-		// Remove destroyed actors
-		std::erase_if(m_actors, [](auto& actor) { actor->OnDestroy(); return actor->m_destroyed; });
-		
 
 		for (auto& actor : m_pending_actors) {
 			actor->Start();
@@ -77,6 +82,7 @@ namespace nu
 			RemoveAllActors();
 		}
 	}
+
 	void Scene::Draw(const Renderer& renderer)
 	{
 		for (const auto& actor : m_actors)
@@ -106,28 +112,6 @@ namespace nu
 		{
 			std::erase_if(m_actors, [](auto& actor) { actor->OnDestroy(); return !actor->GetPersistent(); });
 
-		}
-	}
-
-	void Scene::UpdateCollisions()
-	{
-		for (auto& actorA : m_actors)
-		{
-			for (auto& actorB : m_actors)
-			{
-				if (actorA == actorB || actorA->GetDestroyed() || actorB->GetDestroyed()) continue;
-
-				auto colliderA = actorA->GetComponent<ColliderComponent>();
-				auto colliderB = actorB->GetComponent<ColliderComponent>();
-
-				if (!colliderA || !colliderB) continue;
-
-				if (colliderA->CheckCollision(*colliderB))
-				{
-					actorA->OnCollision(actorB.get());
-					actorB->OnCollision(actorA.get());
-				}
-			}
 		}
 	}
 }

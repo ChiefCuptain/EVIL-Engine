@@ -36,10 +36,13 @@ namespace nu
 		void SetRotation(float rotation) override;
 
 		float GetRotation() const override;
+
+		float GetMass() const;
+
+		const PhysicsBody::PhysicsBodyDef& GetBodyDef() { return m_bodyDef; }
 	private:
 		Vector2 m_size{ 0.0f };
 		Vector2 m_scale{ 1.0f };
-
 		PhysicsBody::PhysicsBodyDef m_bodyDef;
 		std::unique_ptr<PhysicsBody> m_physicsBody;
 	};

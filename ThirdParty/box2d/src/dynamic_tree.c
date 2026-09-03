@@ -123,7 +123,6 @@ static int b2AllocateNode( b2DynamicTree* tree )
 		tree->nodes[tree->nodeCapacity - 1].next = B2_NULL_INDEX;
 		tree->freeList = tree->nodeCount;
 	}
-
 	// Peel a node off the free list.
 	int nodeIndex = tree->freeList;
 	b2TreeNode* node = tree->nodes + nodeIndex;
@@ -1054,7 +1053,7 @@ void b2DynamicTree_ValidateNoEnlarged( const b2DynamicTree* tree )
 		const b2TreeNode* node = nodes + i;
 		if ( node->flags & b2_allocatedNode )
 		{
-			B2_ASSERT( ( node->flags & b2_enlargedNode ) == 0 );
+				B2_ASSERT( ( node->flags & b2_enlargedNode ) == 0 );
 		}
 	}
 #else

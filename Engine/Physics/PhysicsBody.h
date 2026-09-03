@@ -32,6 +32,7 @@ namespace nu
 			// shape
 			Shape shape = Shape::Box;
 			bool isSensor = false;
+			bool isBullet = false;
 
 			// actor associated with the body
 			class Actor* actor{ nullptr };
@@ -40,6 +41,8 @@ namespace nu
 	public:
 		PhysicsBody(const Transform& transform, const Vector2& size, const PhysicsBodyDef& def, const class Physics& physics);
 		~PhysicsBody();
+
+		b2BodyId GetBodyId() const { return m_bodyId; }
 
 		void ApplyForce(const Vector2& force);
 		void SetVelocity(const Vector2& velocity);
@@ -54,6 +57,8 @@ namespace nu
 
 		float GetRotation() const;
 		void SetRotation(float radians) const;
+
+		float GetMass() const;
 
 	private:
 		b2BodyId m_bodyId{ b2_nullBodyId };

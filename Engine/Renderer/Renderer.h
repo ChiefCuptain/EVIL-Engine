@@ -3,6 +3,7 @@
 #include <SDL3_ttf/SDL_ttf.h>
 #include <SDL3_image/SDL_image.h>
 #include "Math/Vector2.h"
+
 namespace nu {
 	class Renderer
 	{
@@ -30,9 +31,17 @@ namespace nu {
 		float GetWindowWidth() const { return m_screen_size.x; }
 		float GetWindowHeight() const { return m_screen_size.y; }
 
+		const Vector2& GetCamera() { return m_camera; }
+		void SetCamera(const Vector2& camera) { m_camera = camera; }
+		bool GetCameraEnabled() const { return m_camera_enabled; }
+		void SetCameraEnabled(bool enabled = true) { m_camera_enabled = enabled; }
+
 		friend class Texture;
 		friend class Text;
 	private:
+
+		Vector2 m_camera{ 0.0f };
+		bool m_camera_enabled = false;
 		SDL_Window* m_window = nullptr;
 		SDL_Renderer* m_renderer = nullptr;
 		Vector2 m_screen_size{ 0, 0 };

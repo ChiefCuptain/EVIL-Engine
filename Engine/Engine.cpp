@@ -11,7 +11,7 @@ namespace nu
 
 	bool Engine::Initialize()
 	{
-		m_renderer.Initialize("Game Engine", 1920, 1080);
+		m_renderer.Initialize("Dinkiverse Sandbox", 1920, 1080);
 		m_particle_system.Initialize(500);
 		m_input.Initialize();
 		m_audio.Initialize();
@@ -35,6 +35,5 @@ namespace nu
 		m_audio.Update();
 		m_input.Update();
 		m_particle_system.Update(m_time.GetDeltaTime());
-		m_physics.Update(m_time.GetDeltaTime());
 	}
 }

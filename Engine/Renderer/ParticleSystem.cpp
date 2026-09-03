@@ -27,6 +27,7 @@ namespace nu
 			particle.lifespan -= dt;
 			particle.active = particle.lifespan > 0;
 			particle.position += particle.velocity * dt;
+			particle.rotation += particle.angularVelocity * dt;
 		}
 	}
 

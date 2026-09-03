@@ -9,8 +9,9 @@ namespace nu
 	{
 		b2WorldDef worldDef = b2DefaultWorldDef();
 		worldDef.gravity = b2Vec2{ 0.0f, 10.0f };
+		worldDef.maximumLinearSpeed = 4000.0f;
 		m_worldId = b2CreateWorld(&worldDef);
-
+		b2World_EnableSleeping(m_worldId, false);
 		return true;
 	}
 
@@ -39,11 +40,12 @@ namespace nu
 			b2BodyId bodyB = b2Shape_GetBody(contact_event->shapeIdB);
 
 			Actor* actorA = (Actor*)b2Body_GetUserData(bodyA);
-			if (!actorA || actorA->GetDestroyed() || actorA->IsActive()) continue;
+			if (!actorA || actorA->GetDestroyed() || !actorA->IsActive()) continue;
 			Actor* actorB = (Actor*)b2Body_GetUserData(bodyB);
-			if (!actorB || actorB->GetDestroyed() || actorB->IsActive()) continue;
+			if (!actorB || actorB->GetDestroyed() || !actorB->IsActive()) continue;
 
 			actorA->OnCollision(actorB);
+			if (!actorB || actorB->GetDestroyed() || !actorB->IsActive()) continue;
 			actorB->OnCollision(actorA);
 		}
 
@@ -60,11 +62,12 @@ namespace nu
 			b2BodyId bodyB = b2Shape_GetBody(sensor_event->visitorShapeId);
 
 			Actor* actorA = (Actor*)b2Body_GetUserData(bodyA);
-			if (!actorA || actorA->GetDestroyed() || actorA->IsActive()) continue;
+			if (!actorA || actorA->GetDestroyed() || !actorA->IsActive()) continue;
 			Actor* actorB = (Actor*)b2Body_GetUserData(bodyB);
-			if (!actorB || actorB->GetDestroyed() || actorB->IsActive()) continue;
+			if (!actorB || actorB->GetDestroyed() || !actorB->IsActive()) continue;
 
 			actorA->OnCollision(actorB);
+			if (!actorB || actorB->GetDestroyed() || !actorB->IsActive()) continue;
 			actorB->OnCollision(actorA);
 		}
 	}

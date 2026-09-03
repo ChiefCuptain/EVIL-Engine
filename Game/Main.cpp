@@ -41,7 +41,7 @@ using namespace nu;
             game->Update(dt);
 
             // RENDER
-            Engine::Get().GetRenderer().SetColor(0, 0, 0); // Set render draw color to black
+            Engine::Get().GetRenderer().SetColor(0, 10, 20); // Set render draw color to black
             Engine::Get().GetRenderer().Clear(); // Clear the renderer
 
             game->Draw(Engine::Get().GetRenderer());

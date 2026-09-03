@@ -127,4 +127,9 @@ namespace nu
 	{
 		return Physics::WorldToScreen(Physics::ToVector2(b2Body_GetLinearVelocity(m_bodyId)));
 	}
+
+	float PhysicsBody::GetMass() const
+	{
+		return b2Body_GetMass(m_bodyId);
+	}
 }

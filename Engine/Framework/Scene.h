@@ -23,12 +23,13 @@ namespace nu
 
 		int GetActorCountByTag(const std::string& tag) const;
 
+		template<typename T>
+		std::vector<T*> GetActorsByType(const std::string& name);
+
 		void RemoveAllActors(bool include_persistent = false);
 
 		void ClearActors() { m_pending_clear = true; }
-
-	private:
-		void UpdateCollisions();
+	
 
 	private:
 		bool m_pending_clear = false;
@@ -49,5 +50,21 @@ namespace nu
 		}
 		
 		return nullptr;
+	}
+
+	template<typename T>
+	inline std::vector<T*> Scene::GetActorsByType(const std::string& name)
+	{
+		std::vector<T*> foundActors;
+		for (auto& actor : m_actors)
+		{
+			T* actorT = dynamic_cast<T*>(actor.get());
+			if (actorT && actorT->m_type == name)
+			{
+				foundActors.push_back(actorT);
+			}
+		}
+
+		return foundActors;
 	}
 }

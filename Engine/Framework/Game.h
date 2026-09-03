@@ -15,7 +15,7 @@ namespace nu
 		virtual void Quit() {}
 
 		virtual void Update(float dt);
-		virtual void Draw(const class Renderer& renderer);
+		virtual void Draw(class Renderer& renderer);
 
 		void SetScene(std::unique_ptr<Scene> scene);
 
