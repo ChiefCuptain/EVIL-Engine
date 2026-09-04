@@ -18,6 +18,11 @@ Click the mouse to launch planets around the central star. Watch as the planets 
 # Known Issues
 * Orbits elevate over time, slowly getting larger when it *should* stay the same
 * Collisions occasionally causes a Box2D b2enlargedNode assertion
+# How to Build
+* Clone repository
+* Open solution file
+* Press Control + Shift + B
+* Once built, press F5
 # Libraries Used
 * SDL3
 * FMOD
